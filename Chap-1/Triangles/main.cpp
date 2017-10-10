@@ -1,14 +1,14 @@
-#include <GL/glew.h>
 #include <cmath>
 
-#include "Shader.h"
-#include "Window.h"
+#include "ThirdParty/GLAD/glad.h"
+#include "Framework/Graphics/Shader.h"
+#include "Framework/Window/Window.h"
 
 int main() {
     Window window("Hello, Triangle!", 800, 600);
     Shader shader("shader.vert", "shader.frag");
     
-    glClearColor(0.3, 0.4, 0.5, 1.0);
+    glClearColor(0.2, 0.3, 0.4, 1.0);
 
     float vertices[] = {
         -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // Left.
@@ -35,10 +35,10 @@ int main() {
 
     while (!window.shouldClose()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        shader.setUniform("alpha", sinf(static_cast<float>(glfwGetTime())) * 0.5f + 0.5f);
         glDrawArrays(GL_TRIANGLES, 0, 3);
         window.swapBuffers();
         glfwPollEvents();
-        shader.setUniform("alpha", sinf(static_cast<float>(glfwGetTime())) * 0.5f + 0.5f);
     }
 
     glDeleteVertexArrays(1, &vao);
