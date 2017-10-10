@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.8)
 project(Learning_OpenGL)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework OpenGL -lglfw -lglew")
 
-set(SOURCE_FILES
-    "Chap 1/triangles.cpp")
+include_directories(Common)
+set(COMMON_FILES
+    Common/Window.cpp
+    Common/Window.h
+    Common/Shader.cpp
+    Common/Shader.h)
 
-add_executable(Learning_OpenGL ${SOURCE_FILES})
+add_executable(Triangles ${COMMON_FILES} Chap-1/Triangles/main.cpp)
