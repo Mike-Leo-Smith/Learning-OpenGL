@@ -5,7 +5,7 @@
 #include <GL/glew.h>
 #include "Window.h"
 
-Window::Window(const char *window_name, int width, int height)
+Window::Window(const std::string &window_name, int width, int height)
 {
     glfwInit();
     
@@ -15,7 +15,7 @@ Window::Window(const char *window_name, int width, int height)
     glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     
-    _handler = glfwCreateWindow(width, height, window_name, nullptr, nullptr);
+    _handler = glfwCreateWindow(width, height, window_name.c_str(), nullptr, nullptr);
     glfwMakeContextCurrent(_handler);
     
     int frame_width, frame_height;

@@ -3,7 +3,9 @@
 in vec3 vertColor;
 out vec4 fragColor;
 
+uniform float alpha;
+
 void main()
 {
-    fragColor = vec4(vertColor, 1.0f);
+    fragColor = vec4(vertColor, alpha);
 }

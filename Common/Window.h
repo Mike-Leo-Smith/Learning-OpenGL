@@ -6,6 +6,7 @@
 #define LEARNING_OPENGL_INIT_H
 
 #include <GLFW/glfw3.h>
+#include <string>
 
 class Window
 {
@@ -13,7 +14,7 @@ private:
     GLFWwindow *_handler = nullptr;
 
 public:
-    Window(const char *window_name, int width, int height);
+    Window(const std::string &window_name, int width, int height);
     ~Window() = default;
     GLFWwindow *handler();
     void swapBuffers();
