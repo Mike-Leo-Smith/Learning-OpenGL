@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Framework/Mathematics/Mathematics.h"
-#include "ThirdParty/GLM/glm.hpp"
+#include "glm/glm.hpp"
 
 struct V
 {

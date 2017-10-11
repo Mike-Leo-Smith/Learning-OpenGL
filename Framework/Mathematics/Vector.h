@@ -1,7 +1,7 @@
 #ifndef LEARNING_OPENGL_VECTOR_H
 #define LEARNING_OPENGL_VECTOR_H
 
-#include "immintrin.h"
+#include <immintrin.h>
 
 template<int Dim>
 struct alignas(16) Vector;

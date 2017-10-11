@@ -1,7 +1,7 @@
 #ifndef LEARNING_OPENGL_MATHEMATICS_H
 #define LEARNING_OPENGL_MATHEMATICS_H
 
-#include "immintrin.h"
+#include <immintrin.h>
 #include "Vector.h"
 
 #define FUNC_ATTRS __attribute__((always_inline, nodebug))
