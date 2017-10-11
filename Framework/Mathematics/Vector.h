@@ -1,22 +1,61 @@
 #ifndef LEARNING_OPENGL_VECTOR_H
 #define LEARNING_OPENGL_VECTOR_H
 
-struct Vector2D {
-    float x;
-    float y;
+#include "immintrin.h"
+
+template<int Dim>
+struct alignas(16) Vector;
+
+template<>
+struct alignas(16) Vector<2>
+{
+    union
+    {
+        __m128 _entries;
+        
+        struct
+        {
+            float x;
+            float y;
+        };
+    };
 };
 
-struct Vector3D {
-    float x;
-    float y;
-    float z;
+template<>
+struct alignas(16) Vector<3>
+{
+    union
+    {
+        __m128 _entries;
+        
+        struct
+        {
+            float x;
+            float y;
+            float z;
+        };
+    };
 };
 
-struct Vector4D {
-    float x;
-    float y;
-    float z;
-    float w;
+template<>
+struct alignas(16) Vector<4>
+{
+    union
+    {
+        __m128 _entries;
+        
+        struct
+        {
+            float x;
+            float y;
+            float z;
+            float w;
+        };
+    };
 };
+
+using Vector2D = Vector<2>;
+using Vector3D = Vector<3>;
+using Vector4D = Vector<4>;
 
 #endif // LEARNING_OPENGL_VECTOR_H
