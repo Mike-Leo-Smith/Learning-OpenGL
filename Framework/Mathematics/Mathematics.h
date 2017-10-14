@@ -8,62 +8,62 @@
 
 namespace math
 {
-    inline Vector2D FUNC_ATTRS makeVector2D(float x = 0, float y = 0)
+    inline Vector2 FUNC_ATTRS makeVector2D(float x = 0, float y = 0)
     {
-        return Vector2D { ._entries = _mm_setr_ps(x, y, 0, 0) };
+        return Vector2 { ._entries = _mm_setr_ps(x, y, 0, 0) };
     }
     
-    inline Vector2D FUNC_ATTRS makeVector2D(const Vector2D &vector2d)
+    inline Vector2 FUNC_ATTRS makeVector2D(const Vector2 &vector2d)
     {
         return vector2d;
     }
     
-    inline Vector2D FUNC_ATTRS makeVector2D(const Vector3D &vector3d)
+    inline Vector2 FUNC_ATTRS makeVector2D(const Vector3 &vector3d)
     {
-        return Vector2D { ._entries = vector3d._entries };
+        return Vector2 { ._entries = vector3d._entries };
     }
     
-    inline Vector2D FUNC_ATTRS makeVector2D(const Vector4D &vector4d)
+    inline Vector2 FUNC_ATTRS makeVector2D(const Vector4 &vector4d)
     {
-        return Vector2D { ._entries = vector4d._entries };
+        return Vector2 { ._entries = vector4d._entries };
     }
     
-    inline Vector3D FUNC_ATTRS makeVector3D(float x = 0, float y = 0, float z = 0)
+    inline Vector3 FUNC_ATTRS makeVector3D(float x = 0, float y = 0, float z = 0)
     {
-        return Vector3D { ._entries = _mm_setr_ps(x, y, z, 0) };
+        return Vector3 { ._entries = _mm_setr_ps(x, y, z, 0) };
     }
     
-    inline Vector3D FUNC_ATTRS makeVector3D(const Vector2D &vector2d, float z = 0)
+    inline Vector3 FUNC_ATTRS makeVector3D(const Vector2 &vector2d, float z = 0)
     {
-        return Vector3D { ._entries = _mm_setr_ps(vector2d.x, vector2d.y, z, 0) };
+        return Vector3 { ._entries = _mm_setr_ps(vector2d.x, vector2d.y, z, 0) };
     }
     
-    inline Vector3D FUNC_ATTRS makeVector3D(const Vector3D &vector3d)
+    inline Vector3 FUNC_ATTRS makeVector3D(const Vector3 &vector3d)
     {
         return vector3d;
     }
     
-    inline Vector3D FUNC_ATTRS makeVector3D(const Vector4D &vector4d)
+    inline Vector3 FUNC_ATTRS makeVector3D(const Vector4 &vector4d)
     {
-        return Vector3D { ._entries = vector4d._entries };
+        return Vector3 { ._entries = vector4d._entries };
     }
     
-    inline Vector4D FUNC_ATTRS makeVector4D(float x = 0, float y = 0, float z = 0, float w = 0)
+    inline Vector4 FUNC_ATTRS makeVector4D(float x = 0, float y = 0, float z = 0, float w = 0)
     {
-        return Vector4D { ._entries = _mm_setr_ps(x, y, z, w) };
+        return Vector4 { ._entries = _mm_setr_ps(x, y, z, w) };
     }
     
-    inline Vector4D FUNC_ATTRS makeVector4D(const Vector2D &vector2d, float z = 0, float w = 0)
+    inline Vector4 FUNC_ATTRS makeVector4D(const Vector2 &vector2d, float z = 0, float w = 0)
     {
-        return Vector4D { ._entries = _mm_setr_ps(vector2d.x, vector2d.y, z, w) };
+        return Vector4 { ._entries = _mm_setr_ps(vector2d.x, vector2d.y, z, w) };
     }
     
-    inline Vector4D FUNC_ATTRS makeVector4D(const Vector3D &vector3d, float w = 0)
+    inline Vector4 FUNC_ATTRS makeVector4D(const Vector3 &vector3d, float w = 0)
     {
-        return Vector4D { ._entries = _mm_setr_ps(vector3d.x, vector3d.y, vector3d.z, w) };
+        return Vector4 { ._entries = _mm_setr_ps(vector3d.x, vector3d.y, vector3d.z, w) };
     }
     
-    inline Vector4D FUNC_ATTRS makeVector4D(const Vector4D &vector4d)
+    inline Vector4 FUNC_ATTRS makeVector4D(const Vector4 &vector4d)
     {
         return vector4d;
     }
@@ -158,9 +158,9 @@ namespace math
         return _mm_cvtss_f32(_mm_dp_ps(lhs._entries, rhs._entries, mask));
     }
     
-    inline Vector3D FUNC_ATTRS cross(const Vector3D &lhs, const Vector3D &rhs)
+    inline Vector3 FUNC_ATTRS cross(const Vector3 &lhs, const Vector3 &rhs)
     {
-        return Vector3D { ._entries = _mm_sub_ps(
+        return Vector3 { ._entries = _mm_sub_ps(
             _mm_mul_ps(_mm_shuffle_ps(lhs._entries, lhs._entries, _MM_SHUFFLE(3, 0, 2, 1)),
                        _mm_shuffle_ps(rhs._entries, rhs._entries, _MM_SHUFFLE(3, 1, 0, 2))),
             _mm_mul_ps(_mm_shuffle_ps(lhs._entries, lhs._entries, _MM_SHUFFLE(3, 1, 0, 2)),

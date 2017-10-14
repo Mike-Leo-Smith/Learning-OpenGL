@@ -20,9 +20,9 @@ public:
     void use();
     void setUniform(const std::string &name, int value);
     void setUniform(const std::string &name, float value);
-    void setUniform(const std::string &name, const Vector2D &vector2d);
-    void setUniform(const std::string &name, const Vector3D &vector3d);
-    void setUniform(const std::string &name, const Vector4D &vector4d);
+    void setUniform(const std::string &name, const Vector2 &vector2d);
+    void setUniform(const std::string &name, const Vector3 &vector3d);
+    void setUniform(const std::string &name, const Vector4 &vector4d);
 };
 
 #endif  // LEARNING_OPENGL_SHADER_H

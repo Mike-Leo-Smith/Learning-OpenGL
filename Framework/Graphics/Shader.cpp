@@ -86,17 +86,17 @@ void Shader::setUniform(const std::string &name, int value)
     glUniform1i(location, value);
 }
 
-void Shader::setUniform(const std::string &name, const Vector2D &vector2d) {
+void Shader::setUniform(const std::string &name, const Vector2 &vector2d) {
     auto &&location = glGetUniformLocation(_id, name.c_str());
     glUniform2f(location, vector2d.x, vector2d.y);
 }
 
-void Shader::setUniform(const std::string &name, const Vector3D &vector3d) {
+void Shader::setUniform(const std::string &name, const Vector3 &vector3d) {
     auto &&location = glGetUniformLocation(_id, name.c_str());
     glUniform3f(location, vector3d.x, vector3d.y, vector3d.z);
 }
 
-void Shader::setUniform(const std::string &name, const Vector4D &vector4d) {
+void Shader::setUniform(const std::string &name, const Vector4 &vector4d) {
     auto &&location = glGetUniformLocation(_id, name.c_str());
     glUniform4f(location, vector4d.x, vector4d.y, vector4d.z, vector4d.w);
 }

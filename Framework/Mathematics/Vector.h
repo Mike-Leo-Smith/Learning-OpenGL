@@ -54,8 +54,8 @@ struct alignas(16) Vector<4>
     };
 };
 
-using Vector2D = Vector<2>;
-using Vector3D = Vector<3>;
-using Vector4D = Vector<4>;
+using Vector2 = Vector<2>;
+using Vector3 = Vector<3>;
+using Vector4 = Vector<4>;
 
 #endif // LEARNING_OPENGL_VECTOR_H
