@@ -9,7 +9,7 @@
 
 int main()
 {
-    Window window("Materials", 800, 600);
+    Window window("Lighting Maps", 800, 600);
     Shader boxShader("box.vert", "box.frag");
     Shader lightShader("box.vert", "light.frag");
     Texture diffuseTexture("container.png");
