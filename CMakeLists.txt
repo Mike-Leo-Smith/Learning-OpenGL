@@ -6,6 +6,7 @@ set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -march=native -Wall")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -march=native -Wall")
 
+link_libraries(glfw)
 include_directories(${CMAKE_SOURCE_DIR})
 
 set(COMMON_FILES
@@ -25,13 +26,7 @@ set(COMMON_FILES
     Framework/Mathematics/Matrix.h)
 
 add_executable(Triangles ${COMMON_FILES} Chap-1/Triangles/main.cpp)
-target_link_libraries(Triangles glfw)
-
-add_executable(Textures ${COMMON_FILES} Chap-1/Textures/main.cpp Chap-1/Cameras/main.cpp)
-target_link_libraries(Textures glfw)
-
+add_executable(Textures ${COMMON_FILES} Chap-1/Textures/main.cpp)
 add_executable(Transformations ${COMMON_FILES} Chap-1/Transformations/main.cpp)
-target_link_libraries(Transformations glfw)
-
-add_executable(Cameras ${COMMON_FILES} Chap-1/Cameras/main.cpp)
-target_link_libraries(Cameras glfw)
+add_executable(Camera ${COMMON_FILES} Chap-1/Camera/main.cpp)
+add_executable(Phong ${COMMON_FILES} Chap-2/Phong/main.cpp)

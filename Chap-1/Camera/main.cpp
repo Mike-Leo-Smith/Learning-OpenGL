@@ -9,7 +9,7 @@
 
 int main()
 {
-    Window window("Transformations", 800, 600);
+    Window window("Camera", 800, 600);
     Shader shader("shader.vert", "shader.frag");
     Texture boxTexture("container.jpg");
     Texture faceTexture("awesomeface.png");
@@ -113,13 +113,14 @@ int main()
     faceTexture.bind(1);
     shader.setUniform("faceSampler", 1);
     
+    auto model = glm::mat4();
+    auto projection = glm::perspective(glm::radians(45.0f),
+                                       static_cast<float>(window.width()) / window.height(), 0.1f, 100.0f);
+    
     while (!window.shouldClose()) {
         processKey();
-        auto model = glm::mat4();
-        auto view = glm::lookAt(glm::vec3(cosf(alpha) * cosf(theta), sinf(alpha) * cosf(theta), sinf(theta)) * 3.0f,
-                                glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 1.0));
-        auto projection = glm::perspective(glm::radians(45.0f),
-                                           static_cast<float>(window.width()) / window.height(), 0.1f, 100.0f);
+        auto view = glm::lookAt(glm::vec3(sinf(alpha) * cosf(theta), sinf(theta), cosf(alpha) * cosf(theta)) * 3.0f,
+                                glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
         
         auto loc = glGetUniformLocation(shader.id(), "transform");
         glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(projection * view * model));

@@ -6,7 +6,7 @@
 
 int main() {
     Window window("Textures", 800, 600);
-    Shader shader("shader.vert", "shader.frag");
+    Shader shader("box.vert", "box.frag");
     Texture texture1("container.jpg");
     Texture texture2("awesomeface.png");
 

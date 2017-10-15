@@ -10,11 +10,11 @@
 int main()
 {
     Window window("Transformations", 800, 600);
-    Shader shader("shader.vert", "shader.frag");
+    Shader shader("box.vert", "box.frag");
     Texture boxTexture("container.jpg");
     Texture faceTexture("awesomeface.png");
     
-    glClearColor(0.2, 0.3, 0.4, 1.0);
+    glClearColor(0.2, 0.2, 0.2, 1.0);
     
     unsigned int vao;
     glGenVertexArrays(1, &vao);

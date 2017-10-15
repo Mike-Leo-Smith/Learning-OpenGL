@@ -6,7 +6,7 @@
 
 int main() {
     Window window("Hello, Triangle!", 800, 600);
-    Shader shader("shader.vert", "shader.frag");
+    Shader shader("box.vert", "box.frag");
     
     glClearColor(0.2, 0.3, 0.4, 1.0);
 
