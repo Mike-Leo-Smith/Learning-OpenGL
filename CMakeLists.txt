@@ -23,13 +23,20 @@ set(COMMON_FILES
     Framework/Graphics/Texture.h
     Framework/Mathematics/Mathematics.h
     Framework/Mathematics/Vector.h
-    Framework/Mathematics/Matrix.h Framework/Graphics/VertexArray.cpp Framework/Graphics/VertexArray.h Framework/Graphics/ArrayBuffer.cpp Framework/Graphics/ArrayBuffer.h Framework/Graphics/Graphics.h Framework/Graphics/Buffer.h Framework/Graphics/Buffer.cpp)
+    Framework/Mathematics/Matrix.h
+    Framework/Graphics/VertexArray.cpp
+    Framework/Graphics/VertexArray.h
+    Framework/Graphics/ArrayBuffer.cpp
+    Framework/Graphics/ArrayBuffer.h
+    Framework/Graphics/Graphics.h
+    Framework/Graphics/Buffer.h
+    Framework/Graphics/Buffer.cpp)
 
 add_executable(Triangles ${COMMON_FILES} Chap-1/Triangles/main.cpp)
 add_executable(Textures ${COMMON_FILES} Chap-1/Textures/main.cpp)
-add_executable(Transformations ${COMMON_FILES} Chap-1/Transformations/main.cpp Chap-1/Transformations/vertices.h)
-add_executable(Camera ${COMMON_FILES} Chap-1/Camera/main.cpp Chap-1/Camera/vertices.h)
-add_executable(Phong ${COMMON_FILES} Chap-2/Phong/main.cpp Chap-2/Phong/vertices.h)
-add_executable(Materials ${COMMON_FILES} Chap-2/Materials/main.cpp Chap-2/Materials/vertices.h)
-add_executable(LightingMaps ${COMMON_FILES} Chap-2/LightingMaps/main.cpp Chap-2/LightingMaps/vertices.h)
-add_executable(LightCasters ${COMMON_FILES} Chap-2/LightCasters/main.cpp)
+add_executable(Transformations ${COMMON_FILES} Chap-1/Transformations/main.cpp)
+add_executable(Camera ${COMMON_FILES} Chap-1/Camera/main.cpp)
+add_executable(Phong ${COMMON_FILES} Chap-2/Phong/main.cpp)
+add_executable(Materials ${COMMON_FILES} Chap-2/Materials/main.cpp)
+add_executable(LightingMaps ${COMMON_FILES} Chap-2/LightingMaps/main.cpp)
+add_executable(DirectionalLight ${COMMON_FILES} Chap-2/DirectionalLight/main.cpp)

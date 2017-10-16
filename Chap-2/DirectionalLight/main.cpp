@@ -17,7 +17,7 @@ glm::vec3 updateCamera(Window &window)
     auto currTime = static_cast<float>(glfwGetTime());
     auto timeElapsed = currTime - lastTime;
     auto deltaAngle = timeElapsed * 2.0f;
-    auto deltaDistance = timeElapsed * 1.5f;
+    auto deltaDistance = timeElapsed * 2.0f;
     lastTime = currTime;
     
     auto win = window.handler();
@@ -27,21 +27,26 @@ glm::vec3 updateCamera(Window &window)
         if (theta > M_PI_2 - 0.05) {
             theta = static_cast<float>(M_PI_2 - 0.05);
         }
-    } else if (glfwGetKey(win, GLFW_KEY_DOWN) || glfwGetKey(win, GLFW_KEY_S)) {
+    }
+    if (glfwGetKey(win, GLFW_KEY_DOWN) || glfwGetKey(win, GLFW_KEY_S)) {
         theta -= deltaAngle;
         if (theta < -M_PI_2 + 0.05) {
             theta = static_cast<float>(-M_PI_2 + 0.05);
         }
-    } else if (glfwGetKey(win, GLFW_KEY_LEFT) || glfwGetKey(win, GLFW_KEY_A)) {
+    }
+    if (glfwGetKey(win, GLFW_KEY_LEFT) || glfwGetKey(win, GLFW_KEY_A)) {
         alpha -= deltaAngle;
-    } else if (glfwGetKey(win, GLFW_KEY_RIGHT) || glfwGetKey(win, GLFW_KEY_D)) {
+    }
+    if (glfwGetKey(win, GLFW_KEY_RIGHT) || glfwGetKey(win, GLFW_KEY_D)) {
         alpha += deltaAngle;
-    } else if (glfwGetKey(win, GLFW_KEY_MINUS)) {
+    }
+    if (glfwGetKey(win, GLFW_KEY_MINUS)) {
         distance += deltaDistance;
         if (distance > 10.0f) {
             distance = 10.0f;
         }
-    } else if (glfwGetKey(win, GLFW_KEY_EQUAL)) {
+    }
+    if (glfwGetKey(win, GLFW_KEY_EQUAL)) {
         distance -= deltaDistance;
         if (distance < 0.5f) {
             distance = 0.5f;
@@ -55,7 +60,6 @@ int main()
 {
     Window window("Lighting Maps", 800, 600);
     Shader boxShader("box.vert", "box.frag");
-    Shader lightShader("box.vert", "light.frag");
     Texture diffuseTexture("container.png");
     Texture specularTexture("container_specular_color.png");
     
@@ -69,14 +73,22 @@ int main()
     boxVao.setAttribPointer(boxVbo, 1, 3, 8, 3);
     boxVao.setAttribPointer(boxVbo, 2, 2, 8, 6);
     
-    VertexArray lightVao;
-    lightVao.setAttribPointer(boxVbo, 0, 3, 8, 0);
+    glm::vec3 cubePositions[] = {
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        glm::vec3(2.0f, 5.0f, -15.0f),
+        glm::vec3(-1.5f, -2.2f, -2.5f),
+        glm::vec3(-3.8f, -2.0f, -12.3f),
+        glm::vec3(2.4f, -0.4f, -3.5f),
+        glm::vec3(-1.7f, 3.0f, -7.5f),
+        glm::vec3(1.3f, -2.0f, -2.5f),
+        glm::vec3(1.5f, 2.0f, -2.5f),
+        glm::vec3(1.5f, 0.2f, -1.5f),
+        glm::vec3(-1.3f, 1.0f, -1.5f)
+    };
     
-    auto boxModel = glm::mat4();
-    auto lightPos = glm::vec3(1.5f, 1.0f, 2.0f);
-    auto lightModel = glm::scale(glm::translate(glm::mat4(), lightPos), glm::vec3(0.2f));
-    auto projection = glm::perspective(glm::radians(45.0f),
-                                       static_cast<float>(window.width()) / window.height(), 0.1f, 100.0f);
+    auto lightPos = glm::vec3(0.2f, 1.0f, 0.3f);
+    auto projection = glm::perspective(
+        glm::radians(45.0f), static_cast<float>(window.width()) / window.height(), 0.1f, 100.0f);
     
     while (!window.shouldClose()) {
     
@@ -91,12 +103,11 @@ int main()
         
         boxVao.bind();
         boxShader.use();
-        boxShader.setUniform("model", boxModel);
         boxShader.setUniform("view", view);
         boxShader.setUniform("projection", projection);
         boxShader.setUniform("cameraPos", cameraPos);
         boxShader.setUniform("material.shininess", 32.0f);
-        boxShader.setUniform("light.position", lightPos);
+        boxShader.setUniform("light.direction", -lightPos);
         boxShader.setUniform("light.ambient", lightAmbient);
         boxShader.setUniform("light.diffuse", lightDiffuse);
         boxShader.setUniform("light.specular", lightSpecular);
@@ -104,16 +115,15 @@ int main()
         boxShader.setUniform("material.specular", 1);
         diffuseTexture.bind(0);
         specularTexture.bind(1);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        
-        lightVao.bind();
-        lightShader.use();
-        lightShader.use();
-        lightShader.setUniform("model", lightModel);
-        lightShader.setUniform("view", view);
-        lightShader.setUniform("projection", projection);
-        lightShader.setUniform("lightColor", lightSpecular);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+    
+        for (unsigned int i = 0; i < 10; i++) {
+            glm::mat4 model;
+            model = glm::translate(model, cubePositions[i]);
+            float angle = 20.0f * i;
+            model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+            boxShader.setUniform("model", model);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
         
         window.swapBuffers();
         glfwPollEvents();
