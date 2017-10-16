@@ -9,34 +9,46 @@
 
 glm::vec3 updateCamera(Window &window)
 {
-    static float alpha = 0;
-    static float theta = 0;
-    static float lastTime = 0;
+    static auto alpha = 0.0f;
+    static auto theta = 0.0f;
+    static auto lastTime = 0.0f;
+    static auto distance = 4.0f;
     
     auto currTime = static_cast<float>(glfwGetTime());
     auto timeElapsed = currTime - lastTime;
     auto deltaAngle = timeElapsed * 2.0f;
+    auto deltaDistance = timeElapsed * 1.5f;
     lastTime = currTime;
     
     auto win = window.handler();
     
-    if (glfwGetKey(win, GLFW_KEY_UP)) {
+    if (glfwGetKey(win, GLFW_KEY_UP) || glfwGetKey(win, GLFW_KEY_W)) {
         theta += deltaAngle;
         if (theta > M_PI_2 - 0.05) {
             theta = static_cast<float>(M_PI_2 - 0.05);
         }
-    } else if (glfwGetKey(win, GLFW_KEY_DOWN)) {
+    } else if (glfwGetKey(win, GLFW_KEY_DOWN) || glfwGetKey(win, GLFW_KEY_S)) {
         theta -= deltaAngle;
         if (theta < -M_PI_2 + 0.05) {
             theta = static_cast<float>(-M_PI_2 + 0.05);
         }
-    } else if (glfwGetKey(win, GLFW_KEY_LEFT)) {
+    } else if (glfwGetKey(win, GLFW_KEY_LEFT) || glfwGetKey(win, GLFW_KEY_A)) {
         alpha -= deltaAngle;
-    } else if (glfwGetKey(win, GLFW_KEY_RIGHT)) {
+    } else if (glfwGetKey(win, GLFW_KEY_RIGHT) || glfwGetKey(win, GLFW_KEY_D)) {
         alpha += deltaAngle;
+    } else if (glfwGetKey(win, GLFW_KEY_MINUS)) {
+        distance += deltaDistance;
+        if (distance > 10.0f) {
+            distance = 10.0f;
+        }
+    } else if (glfwGetKey(win, GLFW_KEY_EQUAL)) {
+        distance -= deltaDistance;
+        if (distance < 0.5f) {
+            distance = 0.5f;
+        }
     }
     
-    return glm::vec3(sinf(alpha) * cosf(theta), sinf(theta), cosf(alpha) * cosf(theta)) * 4.0f;
+    return glm::vec3(sinf(alpha) * cosf(theta), sinf(theta), cosf(alpha) * cosf(theta)) * distance;
 }
 
 int main()
