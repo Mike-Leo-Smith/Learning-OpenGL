@@ -121,14 +121,22 @@ int main()
     
         boxShader.setUniform("directionalLight.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
         boxShader.setUniform("directionalLight.ambient", glm::vec3(0.05f));
-        boxShader.setUniform("directionalLight.diffuse", glm::vec3(0.4f));
+        boxShader.setUniform("directionalLight.diffuse", glm::vec3(0.5f, 0.3f, 0.5f));
         boxShader.setUniform("directionalLight.specular", glm::vec3(0.5f));
+        
+        boxShader.setUniform("spotLight.position", cameraPos);
+        boxShader.setUniform("spotLight.ambient", glm::vec3(0.03f, 0.1f, 0.05f));
+        boxShader.setUniform("spotLight.diffuse", glm::vec3(0.25f, 0.6f, 0.25f));
+        boxShader.setUniform("spotLight.specular", glm::vec3(0.3f, 1.0f, 0.35f));
+        boxShader.setUniform("spotLight.direction", -cameraPos);
+        boxShader.setUniform("spotLight.cutOff", cosf(glm::radians(12.5f)));
+        boxShader.setUniform("spotLight.outerCutOff", cosf(glm::radians(15.0f)));
         
         for (int i = 0; i < 4; i++) {
             boxShader.setUniform("pointLights["+ std::to_string(i) +"].position", pointLightPositions[i]);
             boxShader.setUniform("pointLights["+ std::to_string(i) +"].ambient", glm::vec3(0.05f));
-            boxShader.setUniform("pointLights["+ std::to_string(i) +"].diffuse", glm::vec3(0.8f));
-            boxShader.setUniform("pointLights["+ std::to_string(i) +"].specular", glm::vec3(1.0f));
+            boxShader.setUniform("pointLights["+ std::to_string(i) +"].diffuse", glm::vec3(0.4f));
+            boxShader.setUniform("pointLights["+ std::to_string(i) +"].specular", glm::vec3(0.6f));
             boxShader.setUniform("pointLights["+ std::to_string(i) +"].constant", 1.0f);
             boxShader.setUniform("pointLights["+ std::to_string(i) +"].linear", 0.09f);
             boxShader.setUniform("pointLights["+ std::to_string(i) +"].quadratic", 0.032f);

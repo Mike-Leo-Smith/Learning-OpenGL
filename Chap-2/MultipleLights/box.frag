@@ -44,11 +44,10 @@ vec3 calcPointLight(PointLight light, vec3 normal, vec3 pos, vec3 cameraDir);
 vec3 calcSpotLight(SpotLight light, vec3 normal, vec3 pos, vec3 cameraDir);
 
 uniform DirectionalLight directionalLight;
+uniform SpotLight spotLight;
 
 const int pointLightCount = 4;
 uniform PointLight pointLights[pointLightCount];
-
-//uniform SpotLight light;
 
 uniform vec3 cameraPos;
 uniform Material material;
@@ -61,7 +60,7 @@ void main() {
     for(int i = 0; i < pointLightCount; i++) {
         result += calcPointLight(pointLights[i], normal, fragPos, cameraDir);
     }
-    //result += CalcSpotLight(spotLight, norm, FragPos, cameraDir);
+    result += calcSpotLight(spotLight, normal, fragPos, cameraDir);
     
     fragColor = vec4(result, 1.0);
 }
