@@ -122,8 +122,7 @@ int main()
         auto view = glm::lookAt(glm::vec3(sinf(alpha) * cosf(theta), sinf(theta), cosf(alpha) * cosf(theta)) * 3.0f,
                                 glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
         
-        auto loc = glGetUniformLocation(shader.id(), "transform");
-        glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(projection * view * model));
+        shader.setUniform("transform", projection * view * model);
         
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / sizeof(float) / 5);

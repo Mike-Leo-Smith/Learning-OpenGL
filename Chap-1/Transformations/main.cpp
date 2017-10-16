@@ -95,8 +95,7 @@ int main()
         auto proj = glm::perspective(glm::radians(45.0f),
                                      static_cast<float>(window.width()) / window.height(), 0.1f, 100.0f);
         
-        auto loc = glGetUniformLocation(shader.id(), "transform");
-        glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(proj * view * model));
+        shader.setUniform("transform", proj * view * model);
         
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / sizeof(float) / 5);
