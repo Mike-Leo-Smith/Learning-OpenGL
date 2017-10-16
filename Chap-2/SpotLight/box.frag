@@ -12,7 +12,7 @@ struct Material {
     float shininess;
 };
 
-struct Light {
+struct SpotLight {
     vec3 position;
     vec3 direction;
     vec3 ambient;
@@ -24,7 +24,7 @@ struct Light {
 
 uniform vec3 cameraPos;
 uniform Material material;
-uniform Light light;
+uniform SpotLight light;
 
 void main() {
     vec3 diffuseColor = vec3(texture(material.diffuse, texCoord));

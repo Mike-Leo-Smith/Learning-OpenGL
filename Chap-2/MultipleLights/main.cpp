@@ -58,8 +58,9 @@ glm::vec3 updateCamera(Window &window)
 
 int main()
 {
-    Window window("Lighting Maps", 800, 600);
+    Window window("Multiple Lights", 800, 600);
     Shader boxShader("box.vert", "box.frag");
+    Shader lightShader("box.vert", "light.frag");
     Texture diffuseTexture("container.png");
     Texture specularTexture("container_specular.png");
     
@@ -89,6 +90,13 @@ int main()
         glm::vec3(-1.3f, 1.0f, -1.5f)
     };
     
+    glm::vec3 pointLightPositions[] = {
+        glm::vec3(0.7f, 0.2f, 2.0f),
+        glm::vec3(2.3f, -3.3f, -4.0f),
+        glm::vec3(-4.0f, 2.0f, -12.0f),
+        glm::vec3(0.0f, 0.0f, -3.0f)
+    };
+    
     auto boxModel = glm::mat4();
     auto projection = glm::perspective(glm::radians(45.0f),
                                        static_cast<float>(window.width()) / window.height(), 0.1f, 100.0f);
@@ -99,35 +107,51 @@ int main()
         auto view = glm::lookAt(cameraPos, glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
         
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        
-        auto lightSpecular = glm::vec3(1.0f);
-        auto lightDiffuse = lightSpecular * 0.5f;
-        auto lightAmbient = lightSpecular * 0.2f;
-        
+    
         boxVao.bind();
         boxShader.use();
         boxShader.setUniform("view", view);
         boxShader.setUniform("projection", projection);
         boxShader.setUniform("cameraPos", cameraPos);
         boxShader.setUniform("material.shininess", 32.0f);
-        boxShader.setUniform("light.position", cameraPos);
-        boxShader.setUniform("light.ambient", lightAmbient);
-        boxShader.setUniform("light.diffuse", lightDiffuse);
-        boxShader.setUniform("light.specular", lightSpecular);
-        boxShader.setUniform("light.direction", -cameraPos);
-        boxShader.setUniform("light.cutOff", cosf(glm::radians(10.0f)));
-        boxShader.setUniform("light.outerCutOff", cosf(glm::radians(12.5f)));
         boxShader.setUniform("material.diffuse", 0);
         boxShader.setUniform("material.specular", 1);
         diffuseTexture.bind(0);
         specularTexture.bind(1);
+    
+        boxShader.setUniform("directionalLight.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
+        boxShader.setUniform("directionalLight.ambient", glm::vec3(0.05f));
+        boxShader.setUniform("directionalLight.diffuse", glm::vec3(0.4f));
+        boxShader.setUniform("directionalLight.specular", glm::vec3(0.5f));
         
-        for (unsigned int i = 0; i < 10; i++) {
+        for (int i = 0; i < 4; i++) {
+            boxShader.setUniform("pointLights["+ std::to_string(i) +"].position", pointLightPositions[i]);
+            boxShader.setUniform("pointLights["+ std::to_string(i) +"].ambient", glm::vec3(0.05f));
+            boxShader.setUniform("pointLights["+ std::to_string(i) +"].diffuse", glm::vec3(0.8f));
+            boxShader.setUniform("pointLights["+ std::to_string(i) +"].specular", glm::vec3(1.0f));
+            boxShader.setUniform("pointLights["+ std::to_string(i) +"].constant", 1.0f);
+            boxShader.setUniform("pointLights["+ std::to_string(i) +"].linear", 0.09f);
+            boxShader.setUniform("pointLights["+ std::to_string(i) +"].quadratic", 0.032f);
+        }
+        
+        for (int i = 0; i < 10; i++) {
             glm::mat4 model;
             model = glm::translate(model, cubePositions[i]);
             float angle = 20.0f * i;
             model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
             boxShader.setUniform("model", model);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
+    
+        lightVao.bind();
+        lightShader.use();
+        lightShader.setUniform("view", view);
+        lightShader.setUniform("projection", projection);
+        lightShader.setUniform("lightColor", glm::vec3(1.0f));
+        for (auto pointLightPosition : pointLightPositions) {
+            auto scale = glm::scale(glm::mat4(), glm::vec3(0.15f));
+            auto translation = glm::translate(glm::mat4(), pointLightPosition);
+            lightShader.setUniform("model", translation * scale);
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
         
