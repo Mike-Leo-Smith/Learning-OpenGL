@@ -7,43 +7,43 @@
 #include "Framework/Graphics/Graphics.h"
 #include "vertices.h"
 
+glm::vec3 updateCamera(Window &window)
+{
+    static float alpha = 0;
+    static float theta = 0;
+    static float lastTime = 0;
+    
+    auto currTime = static_cast<float>(glfwGetTime());
+    auto timeElapsed = currTime - lastTime;
+    auto deltaAngle = timeElapsed * 2.0f;
+    lastTime = currTime;
+    
+    auto win = window.handler();
+    
+    if (glfwGetKey(win, GLFW_KEY_UP)) {
+        theta += deltaAngle;
+        if (theta > M_PI_2 - 0.05) {
+            theta = static_cast<float>(M_PI_2 - 0.05);
+        }
+    } else if (glfwGetKey(win, GLFW_KEY_DOWN)) {
+        theta -= deltaAngle;
+        if (theta < -M_PI_2 + 0.05) {
+            theta = static_cast<float>(-M_PI_2 + 0.05);
+        }
+    } else if (glfwGetKey(win, GLFW_KEY_LEFT)) {
+        alpha -= deltaAngle;
+    } else if (glfwGetKey(win, GLFW_KEY_RIGHT)) {
+        alpha += deltaAngle;
+    }
+    
+    return glm::vec3(sinf(alpha) * cosf(theta), sinf(theta), cosf(alpha) * cosf(theta)) * 4.0f;
+}
+
 int main()
 {
     Window window("Materials", 800, 600);
     Shader boxShader("box.vert", "box.frag");
     Shader lightShader("box.vert", "light.frag");
-    
-    float alpha = 0;
-    float theta = 0;
-    float lastTime = 0;
-    float timeElapsed = 0;
-    
-    auto processKey = [&alpha, &theta, &lastTime, &timeElapsed, &window] {
-        
-        auto deltaAngle = timeElapsed * 2.0f;
-        
-        auto currentTime = static_cast<float>(glfwGetTime());
-        timeElapsed = currentTime - lastTime;
-        lastTime = currentTime;
-        
-        auto win = window.handler();
-        
-        if (glfwGetKey(win, GLFW_KEY_UP)) {
-            theta += deltaAngle;
-            if (theta > M_PI_2 - 0.05) {
-                theta = static_cast<float>(M_PI_2 - 0.05);
-            }
-        } else if (glfwGetKey(win, GLFW_KEY_DOWN)) {
-            theta -= deltaAngle;
-            if (theta < -M_PI_2 + 0.05) {
-                theta = static_cast<float>(-M_PI_2 + 0.05);
-            }
-        } else if (glfwGetKey(win, GLFW_KEY_LEFT)) {
-            alpha -= deltaAngle;
-        } else if (glfwGetKey(win, GLFW_KEY_RIGHT)) {
-            alpha += deltaAngle;
-        }
-    };
     
     glClearColor(0.1, 0.1, 0.1, 1.0);
     
@@ -64,9 +64,8 @@ int main()
                                        static_cast<float>(window.width()) / window.height(), 0.1f, 100.0f);
     
     while (!window.shouldClose()) {
-        processKey();
         
-        auto cameraPos = glm::vec3(sinf(alpha) * cosf(theta), sinf(theta), cosf(alpha) * cosf(theta)) * 4.0f;
+        auto cameraPos = updateCamera(window);
         auto view = glm::lookAt(cameraPos, glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
         
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
