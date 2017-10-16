@@ -8,7 +8,7 @@ private:
     unsigned int _id;
 
 public:
-    Texture(const std::string &file_name);
+    explicit Texture(const std::string &file_name);
     ~Texture();
     void bind(int unit = -1);
 };
