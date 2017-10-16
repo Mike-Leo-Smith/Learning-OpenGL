@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "ThirdParty/GLAD/glad.h"
 #include "Shader.h"
@@ -76,27 +77,52 @@ unsigned int Shader::id() { return _id; }
 void Shader::use() { glUseProgram(_id); }
 
 void Shader::setUniform(const std::string &name, float value) {
-    auto &&location = glGetUniformLocation(_id, name.c_str());
-    glUniform1f(location, value);
+    glUniform1f(getUniform(name), value);
 }
 
 void Shader::setUniform(const std::string &name, int value)
 {
-    auto &&location = glGetUniformLocation(_id, name.c_str());
-    glUniform1i(location, value);
+    glUniform1i(getUniform(name), value);
 }
 
 void Shader::setUniform(const std::string &name, const Vector2 &vector2d) {
-    auto &&location = glGetUniformLocation(_id, name.c_str());
-    glUniform2f(location, vector2d.x, vector2d.y);
+    glUniform2f(getUniform(name), vector2d.x, vector2d.y);
+}
+
+void Shader::setUniform(const std::string &name, const glm::vec2 &vec2)
+{
+    glUniform2f(getUniform(name), vec2.x, vec2.y);
+}
+
+void Shader::setUniform(const std::string &name, const glm::vec3 &vec3)
+{
+    glUniform3f(getUniform(name), vec3.x, vec3.y, vec3.z);
+}
+
+void Shader::setUniform(const std::string &name, const glm::vec4 &vec4)
+{
+    glUniform4f(getUniform(name), vec4.x, vec4.y, vec4.z, vec4.w);
+}
+
+void Shader::setUniform(const std::string &name, const glm::mat3 &mat3)
+{
+    glUniformMatrix3fv(getUniform(name), 1, GL_FALSE, glm::value_ptr(mat3));
+}
+
+void Shader::setUniform(const std::string &name, const glm::mat4 &mat4)
+{
+    glUniformMatrix4fv(getUniform(name), 1, GL_FALSE, glm::value_ptr(mat4));
+}
+
+int Shader::getUniform(const std::string &name)
+{
+    return glGetUniformLocation(_id, name.c_str());
 }
 
 void Shader::setUniform(const std::string &name, const Vector3 &vector3d) {
-    auto &&location = glGetUniformLocation(_id, name.c_str());
-    glUniform3f(location, vector3d.x, vector3d.y, vector3d.z);
+    glUniform3f(getUniform(name), vector3d.x, vector3d.y, vector3d.z);
 }
 
 void Shader::setUniform(const std::string &name, const Vector4 &vector4d) {
-    auto &&location = glGetUniformLocation(_id, name.c_str());
-    glUniform4f(location, vector4d.x, vector4d.y, vector4d.z, vector4d.w);
+    glUniform4f(getUniform(name), vector4d.x, vector4d.y, vector4d.z, vector4d.w);
 }

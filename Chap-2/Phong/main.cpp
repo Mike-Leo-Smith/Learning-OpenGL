@@ -135,26 +135,18 @@ int main()
         
         glBindVertexArray(boxVao);
         boxShader.use();
-        auto loc = glGetUniformLocation(boxShader.id(), "model");
-        glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(boxModel));
-        loc = glGetUniformLocation(boxShader.id(), "view");
-        glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(view));
-        loc = glGetUniformLocation(boxShader.id(), "projection");
-        glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(projection));
-        loc = glGetUniformLocation(boxShader.id(), "lightPos");
-        glUniform3fv(loc, 1, glm::value_ptr(lightPos));
-        loc = glGetUniformLocation(boxShader.id(), "cameraPos");
-        glUniform3fv(loc, 1, glm::value_ptr(cameraPos));
+        boxShader.setUniform("model", boxModel);
+        boxShader.setUniform("view", view);
+        boxShader.setUniform("projection", projection);
+        boxShader.setUniform("lightPos", lightPos);
+        boxShader.setUniform("cameraPos", cameraPos);
         glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / sizeof(float) / 6);
         
         glBindVertexArray(lightVao);
         lightShader.use();
-        loc = glGetUniformLocation(lightShader.id(), "model");
-        glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(lightModel));
-        loc = glGetUniformLocation(lightShader.id(), "view");
-        glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(view));
-        loc = glGetUniformLocation(lightShader.id(), "projection");
-        glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(projection));
+        lightShader.setUniform("model", lightModel);
+        lightShader.setUniform("view", view);
+        lightShader.setUniform("projection", projection);
         glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / sizeof(float) / 6);
         
         window.swapBuffers();
