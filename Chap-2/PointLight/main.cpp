@@ -60,6 +60,7 @@ int main()
 {
     Window window("Lighting Maps", 800, 600);
     Shader boxShader("box.vert", "box.frag");
+    Shader lightShader("box.vert", "light.frag");
     Texture diffuseTexture("container.png");
     Texture specularTexture("container_specular.png");
     
@@ -72,6 +73,9 @@ int main()
     boxVao.setAttribPointer(boxVbo, 0, 3, 8, 0);
     boxVao.setAttribPointer(boxVbo, 1, 3, 8, 3);
     boxVao.setAttribPointer(boxVbo, 2, 2, 8, 6);
+    
+    VertexArray lightVao;
+    lightVao.setAttribPointer(boxVbo, 0, 3, 8, 0);
     
     glm::vec3 cubePositions[] = {
         glm::vec3(0.0f, 0.0f, 0.0f),
@@ -86,16 +90,18 @@ int main()
         glm::vec3(-1.3f, 1.0f, -1.5f)
     };
     
-    auto lightPos = glm::vec3(0.2f, 1.0f, 0.3f);
-    auto projection = glm::perspective(
-        glm::radians(45.0f), static_cast<float>(window.width()) / window.height(), 0.1f, 100.0f);
+    auto boxModel = glm::mat4();
+    auto lightPos = glm::vec3(1.2f, 1.0f, 2.0f);
+    auto lightModel = glm::scale(glm::translate(glm::mat4(), lightPos), glm::vec3(0.2f));
+    auto projection = glm::perspective(glm::radians(45.0f),
+                                       static_cast<float>(window.width()) / window.height(), 0.1f, 100.0f);
     
     while (!window.shouldClose()) {
-    
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
+        
         auto cameraPos = updateCamera(window);
         auto view = glm::lookAt(cameraPos, glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+        
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         auto lightSpecular = glm::vec3(1.0f);
         auto lightDiffuse = lightSpecular * 0.5f;
@@ -107,15 +113,18 @@ int main()
         boxShader.setUniform("projection", projection);
         boxShader.setUniform("cameraPos", cameraPos);
         boxShader.setUniform("material.shininess", 32.0f);
-        boxShader.setUniform("light.direction", -lightPos);
+        boxShader.setUniform("light.position", lightPos);
         boxShader.setUniform("light.ambient", lightAmbient);
         boxShader.setUniform("light.diffuse", lightDiffuse);
         boxShader.setUniform("light.specular", lightSpecular);
+        boxShader.setUniform("light.constant", 1.0f);
+        boxShader.setUniform("light.linear", 0.09f);
+        boxShader.setUniform("light.quadratic", 0.032f);
         boxShader.setUniform("material.diffuse", 0);
         boxShader.setUniform("material.specular", 1);
         diffuseTexture.bind(0);
         specularTexture.bind(1);
-    
+        
         for (unsigned int i = 0; i < 10; i++) {
             glm::mat4 model;
             model = glm::translate(model, cubePositions[i]);
@@ -124,6 +133,15 @@ int main()
             boxShader.setUniform("model", model);
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
+        
+        lightVao.bind();
+        lightShader.use();
+        lightShader.use();
+        lightShader.setUniform("model", lightModel);
+        lightShader.setUniform("view", view);
+        lightShader.setUniform("projection", projection);
+        lightShader.setUniform("lightColor", lightSpecular);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
         
         window.swapBuffers();
         glfwPollEvents();

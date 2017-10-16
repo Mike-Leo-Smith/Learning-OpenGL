@@ -12,7 +12,7 @@ glm::vec3 updateCamera(Window &window)
     static auto alpha = 0.0f;
     static auto theta = 0.0f;
     static auto lastTime = 0.0f;
-    static auto distance = 4.0f;
+    static auto distance = 5.0f;
     
     auto currTime = static_cast<float>(glfwGetTime());
     auto timeElapsed = currTime - lastTime;
@@ -73,6 +73,9 @@ int main()
     boxVao.setAttribPointer(boxVbo, 1, 3, 8, 3);
     boxVao.setAttribPointer(boxVbo, 2, 2, 8, 6);
     
+    VertexArray lightVao;
+    lightVao.setAttribPointer(boxVbo, 0, 3, 8, 0);
+    
     glm::vec3 cubePositions[] = {
         glm::vec3(0.0f, 0.0f, 0.0f),
         glm::vec3(2.0f, 5.0f, -15.0f),
@@ -86,16 +89,16 @@ int main()
         glm::vec3(-1.3f, 1.0f, -1.5f)
     };
     
-    auto lightPos = glm::vec3(0.2f, 1.0f, 0.3f);
-    auto projection = glm::perspective(
-        glm::radians(45.0f), static_cast<float>(window.width()) / window.height(), 0.1f, 100.0f);
+    auto boxModel = glm::mat4();
+    auto projection = glm::perspective(glm::radians(45.0f),
+                                       static_cast<float>(window.width()) / window.height(), 0.1f, 100.0f);
     
     while (!window.shouldClose()) {
-    
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
+        
         auto cameraPos = updateCamera(window);
         auto view = glm::lookAt(cameraPos, glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+        
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         auto lightSpecular = glm::vec3(1.0f);
         auto lightDiffuse = lightSpecular * 0.5f;
@@ -107,15 +110,18 @@ int main()
         boxShader.setUniform("projection", projection);
         boxShader.setUniform("cameraPos", cameraPos);
         boxShader.setUniform("material.shininess", 32.0f);
-        boxShader.setUniform("light.direction", -lightPos);
+        boxShader.setUniform("light.position", cameraPos);
         boxShader.setUniform("light.ambient", lightAmbient);
         boxShader.setUniform("light.diffuse", lightDiffuse);
         boxShader.setUniform("light.specular", lightSpecular);
+        boxShader.setUniform("light.direction", -cameraPos);
+        boxShader.setUniform("light.cutOff", cosf(glm::radians(10.0f)));
+        boxShader.setUniform("light.outerCutOff", cosf(glm::radians(12.5f)));
         boxShader.setUniform("material.diffuse", 0);
         boxShader.setUniform("material.specular", 1);
         diffuseTexture.bind(0);
         specularTexture.bind(1);
-    
+        
         for (unsigned int i = 0; i < 10; i++) {
             glm::mat4 model;
             model = glm::translate(model, cubePositions[i]);
