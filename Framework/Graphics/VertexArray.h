@@ -7,7 +7,7 @@
 
 #include "Buffer.h"
 
-class VertexArray
+class VertexArray final
 {
 private:
     unsigned int _id;
@@ -15,7 +15,7 @@ private:
 public:
     VertexArray();
     ~VertexArray();
-    void bind();
+    void bind() const;
     void setAttribPointer(const Buffer &buffer, unsigned int index, int size, int stride, int offset);
 };
 

@@ -3,14 +3,14 @@
 
 #include <string>
 
-class Texture {
+class Texture final {
 private:
     unsigned int _id;
 
 public:
     explicit Texture(const std::string &file_name);
     ~Texture();
-    void bind(int unit = -1);
+    void bind(int unit = -1) const;
 };
 
 #endif // LEARNING_OPENGL_TEXTURE_H

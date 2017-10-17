@@ -2,11 +2,11 @@ cmake_minimum_required(VERSION 3.8)
 project(Learning_OpenGL)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_BUILD_TYPE Release)
+#set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -march=native -Wall")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -march=native -Wall")
 
-link_libraries(glfw)
+link_libraries(glfw assimp)
 include_directories(${CMAKE_SOURCE_DIR})
 
 set(COMMON_FILES
@@ -26,11 +26,18 @@ set(COMMON_FILES
     Framework/Mathematics/Matrix.h
     Framework/Graphics/VertexArray.cpp
     Framework/Graphics/VertexArray.h
-    Framework/Graphics/ArrayBuffer.cpp
-    Framework/Graphics/ArrayBuffer.h
+    Framework/Graphics/VertexBuffer.cpp
+    Framework/Graphics/VertexBuffer.h
     Framework/Graphics/Graphics.h
     Framework/Graphics/Buffer.h
-    Framework/Graphics/Buffer.cpp)
+    Framework/Graphics/Buffer.cpp
+    Framework/Model/Mesh.cpp
+    Framework/Model/Mesh.h
+    Framework/Graphics/Vertex.h
+    Framework/Graphics/ElementBuffer.cpp
+    Framework/Graphics/ElementBuffer.h
+    Framework/Model/Model.cpp
+    Framework/Model/Model.h)
 
 add_executable(Triangles ${COMMON_FILES} Chap-1/Triangles/main.cpp)
 add_executable(Textures ${COMMON_FILES} Chap-1/Textures/main.cpp)
@@ -43,3 +50,4 @@ add_executable(DirectionalLight ${COMMON_FILES} Chap-2/DirectionalLight/main.cpp
 add_executable(PointLight ${COMMON_FILES} Chap-2/PointLight/main.cpp)
 add_executable(SpotLight ${COMMON_FILES} Chap-2/SpotLight/main.cpp)
 add_executable(MultipleLights ${COMMON_FILES} Chap-2/MultipleLights/main.cpp)
+add_executable(Models ${COMMON_FILES} Chap-3/Models/main.cpp)

@@ -65,7 +65,7 @@ int main()
     
     glClearColor(0.2, 0.3, 0.4, 1.0);
     
-    ArrayBuffer vbo;
+    VertexBuffer vbo;
     vbo.setBufferData(vertices, sizeof(vertices), GL_STATIC_DRAW);
     
     VertexArray vao;

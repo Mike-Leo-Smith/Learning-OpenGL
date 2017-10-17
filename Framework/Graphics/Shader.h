@@ -9,7 +9,7 @@
 #include <glm/glm.hpp>
 #include "Framework/Mathematics/Vector.h"
 
-class Shader
+class Shader final
 {
 private:
     unsigned int _id = 0;
@@ -17,8 +17,7 @@ private:
 public:
     Shader(const char *vsh_file_name, const char *fsh_file_name);
     ~Shader();
-    unsigned int id();
-    void use();
+    void use() const;
     int getUniform(const std::string &name);
     void setUniform(const std::string &name, int value);
     void setUniform(const std::string &name, float value);

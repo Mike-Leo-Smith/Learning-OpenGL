@@ -17,8 +17,16 @@ int main()
         -0.5f, 0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f  // 左上
     };
     
-    ArrayBuffer vbo;
+    unsigned int indices[] {
+        0, 1, 3,
+        1, 2, 3
+    };
+    
+    VertexBuffer vbo;
     vbo.setBufferData(vertices, sizeof(vertices), GL_STATIC_DRAW);
+    
+    ElementBuffer ebo;
+    ebo.setBufferData(indices, sizeof(indices), GL_STATIC_DRAW);
     
     VertexArray vao;
     vao.setAttribPointer(vbo, 0, 3, 8, 0);
@@ -37,7 +45,8 @@ int main()
     
     while (!window.shouldClose()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+        ebo.bind();
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
         window.swapBuffers();
         glfwPollEvents();
     }

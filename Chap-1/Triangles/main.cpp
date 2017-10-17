@@ -12,12 +12,15 @@ int main()
     glClearColor(0.2, 0.3, 0.4, 1.0);
     
     float vertices[] = {
-        -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // Left.
-        0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, // Right.
-        0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f  // Up.
+        -0.5f, -0.5f, 0.0f,
+        1.0f, 0.0f, 0.0f,
+        0.5f, -0.5f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 0.5f, 0.0f,
+        0.0f, 0.0f, 1.0f
     };
     
-    ArrayBuffer vbo;
+    VertexBuffer vbo;
     vbo.setBufferData(vertices, sizeof(vertices), GL_STATIC_DRAW);
     
     VertexArray vao;

@@ -72,10 +72,6 @@ Shader::Shader(const char *vsh_file_name, const char *fsh_file_name) {
 
 Shader::~Shader() { glDeleteProgram(_id); }
 
-unsigned int Shader::id() { return _id; }
-
-void Shader::use() { glUseProgram(_id); }
-
 void Shader::setUniform(const std::string &name, float value) {
     glUniform1f(getUniform(name), value);
 }
@@ -117,6 +113,11 @@ void Shader::setUniform(const std::string &name, const glm::mat4 &mat4)
 int Shader::getUniform(const std::string &name)
 {
     return glGetUniformLocation(_id, name.c_str());
+}
+
+void Shader::use() const
+{
+    glUseProgram(_id);
 }
 
 void Shader::setUniform(const std::string &name, const Vector3 &vector3d) {

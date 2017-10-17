@@ -5,9 +5,11 @@
 #ifndef LEARNING_OPENGL_GRAPHICS_H
 #define LEARNING_OPENGL_GRAPHICS_H
 
+#include "Vertex.h"
 #include "Shader.h"
 #include "Texture.h"
 #include "VertexArray.h"
-#include "ArrayBuffer.h"
+#include "VertexBuffer.h"
+#include "ElementBuffer.h"
 
 #endif  // LEARNING_OPENGL_GRAPHICS_H

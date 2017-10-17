@@ -11,7 +11,7 @@ VertexArray::VertexArray()
     glGenVertexArrays(1, &_id);
 }
 
-void VertexArray::bind()
+void VertexArray::bind() const
 {
     glBindVertexArray(_id);
 }
@@ -21,8 +21,8 @@ void VertexArray::setAttribPointer(const Buffer &buffer, unsigned int index, int
     glBindVertexArray(_id);
     glBindBuffer(buffer.type(), buffer.id());
     glEnableVertexAttribArray(index);
-    glVertexAttribPointer(index, size, GL_FLOAT, GL_FALSE, stride * sizeof(float),
-                          static_cast<float *>(nullptr) + offset);
+    glVertexAttribPointer(index, size, buffer.dataType(), GL_FALSE, stride * buffer.ptrDiff(),
+                          reinterpret_cast<void *>(offset * buffer.ptrDiff()));
     glBindBuffer(buffer.type(), 0);
     glBindVertexArray(0);
 }
