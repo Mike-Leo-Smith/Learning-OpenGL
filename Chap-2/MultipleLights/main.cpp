@@ -7,53 +7,67 @@
 #include "Framework/Graphics/Graphics.h"
 #include "vertices.h"
 
-glm::vec3 updateCamera(Window &window)
+void updateCamera(Window &window, glm::vec3 &cameraPos, glm::vec3 &lookAt)
 {
     static auto alpha = 0.0f;
     static auto theta = 0.0f;
     static auto lastTime = 0.0f;
     static auto distance = 5.0f;
+    static auto x = 0.0f;
+    static auto y = 0.0f;
     
     auto currTime = static_cast<float>(glfwGetTime());
     auto timeElapsed = currTime - lastTime;
     auto deltaAngle = timeElapsed * 2.0f;
-    auto deltaDistance = timeElapsed * 2.0f;
+    auto deltaDistance = timeElapsed * 5.0f;
     lastTime = currTime;
     
     auto win = window.handler();
     
-    if (glfwGetKey(win, GLFW_KEY_UP) || glfwGetKey(win, GLFW_KEY_W)) {
+    if (glfwGetKey(win, GLFW_KEY_UP)) {
         theta += deltaAngle;
         if (theta > M_PI_2 - 0.05) {
             theta = static_cast<float>(M_PI_2 - 0.05);
         }
     }
-    if (glfwGetKey(win, GLFW_KEY_DOWN) || glfwGetKey(win, GLFW_KEY_S)) {
+    if (glfwGetKey(win, GLFW_KEY_DOWN)) {
         theta -= deltaAngle;
         if (theta < -M_PI_2 + 0.05) {
             theta = static_cast<float>(-M_PI_2 + 0.05);
         }
     }
-    if (glfwGetKey(win, GLFW_KEY_LEFT) || glfwGetKey(win, GLFW_KEY_A)) {
+    if (glfwGetKey(win, GLFW_KEY_LEFT)) {
         alpha -= deltaAngle;
     }
-    if (glfwGetKey(win, GLFW_KEY_RIGHT) || glfwGetKey(win, GLFW_KEY_D)) {
+    if (glfwGetKey(win, GLFW_KEY_RIGHT)) {
         alpha += deltaAngle;
     }
+    
     if (glfwGetKey(win, GLFW_KEY_MINUS)) {
         distance += deltaDistance;
-        if (distance > 10.0f) {
-            distance = 10.0f;
-        }
     }
     if (glfwGetKey(win, GLFW_KEY_EQUAL)) {
         distance -= deltaDistance;
-        if (distance < 0.5f) {
-            distance = 0.5f;
+        if (distance < 0.01f) {
+            distance = 0.01f;
         }
     }
     
-    return glm::vec3(sinf(alpha) * cosf(theta), sinf(theta), cosf(alpha) * cosf(theta)) * distance;
+    if (glfwGetKey(win, GLFW_KEY_W)) {
+        y += deltaDistance;
+    }
+    if (glfwGetKey(win, GLFW_KEY_S)) {
+        y -= deltaDistance;
+    }
+    if (glfwGetKey(win, GLFW_KEY_A)) {
+        x -= deltaDistance;
+    }
+    if (glfwGetKey(win, GLFW_KEY_D)) {
+        x += deltaDistance;
+    }
+    
+    lookAt = glm::vec3(x, y, 0.0f);
+    cameraPos = glm::vec3(sinf(alpha) * cosf(theta), sinf(theta), cosf(alpha) * cosf(theta)) * distance + lookAt;
 }
 
 int main()
@@ -103,11 +117,12 @@ int main()
     
     while (!window.shouldClose()) {
         
-        auto cameraPos = updateCamera(window);
-        auto view = glm::lookAt(cameraPos, glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+        glm::vec3 cameraPos, lookAt;
+        updateCamera(window, cameraPos, lookAt);
+        auto view = glm::lookAt(cameraPos, lookAt, glm::vec3(0.0, 1.0, 0.0));
         
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
+        
         boxVao.bind();
         boxShader.use();
         boxShader.setUniform("view", view);
@@ -118,7 +133,7 @@ int main()
         boxShader.setUniform("material.specular", 1);
         diffuseTexture.bind(0);
         specularTexture.bind(1);
-    
+        
         boxShader.setUniform("directionalLight.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
         boxShader.setUniform("directionalLight.ambient", glm::vec3(0.05f));
         boxShader.setUniform("directionalLight.diffuse", glm::vec3(0.5f, 0.3f, 0.5f));
@@ -128,18 +143,18 @@ int main()
         boxShader.setUniform("spotLight.ambient", glm::vec3(0.03f, 0.1f, 0.05f));
         boxShader.setUniform("spotLight.diffuse", glm::vec3(0.25f, 0.6f, 0.25f));
         boxShader.setUniform("spotLight.specular", glm::vec3(0.3f, 1.0f, 0.35f));
-        boxShader.setUniform("spotLight.direction", -cameraPos);
+        boxShader.setUniform("spotLight.direction", lookAt - cameraPos);
         boxShader.setUniform("spotLight.cutOff", cosf(glm::radians(12.5f)));
         boxShader.setUniform("spotLight.outerCutOff", cosf(glm::radians(15.0f)));
         
         for (int i = 0; i < 4; i++) {
-            boxShader.setUniform("pointLights["+ std::to_string(i) +"].position", pointLightPositions[i]);
-            boxShader.setUniform("pointLights["+ std::to_string(i) +"].ambient", glm::vec3(0.05f));
-            boxShader.setUniform("pointLights["+ std::to_string(i) +"].diffuse", glm::vec3(0.4f));
-            boxShader.setUniform("pointLights["+ std::to_string(i) +"].specular", glm::vec3(0.6f));
-            boxShader.setUniform("pointLights["+ std::to_string(i) +"].constant", 1.0f);
-            boxShader.setUniform("pointLights["+ std::to_string(i) +"].linear", 0.09f);
-            boxShader.setUniform("pointLights["+ std::to_string(i) +"].quadratic", 0.032f);
+            boxShader.setUniform("pointLights[" + std::to_string(i) + "].position", pointLightPositions[i]);
+            boxShader.setUniform("pointLights[" + std::to_string(i) + "].ambient", glm::vec3(0.05f));
+            boxShader.setUniform("pointLights[" + std::to_string(i) + "].diffuse", glm::vec3(0.4f));
+            boxShader.setUniform("pointLights[" + std::to_string(i) + "].specular", glm::vec3(0.6f));
+            boxShader.setUniform("pointLights[" + std::to_string(i) + "].constant", 1.0f);
+            boxShader.setUniform("pointLights[" + std::to_string(i) + "].linear", 0.09f);
+            boxShader.setUniform("pointLights[" + std::to_string(i) + "].quadratic", 0.032f);
         }
         
         for (int i = 0; i < 10; i++) {
@@ -150,7 +165,7 @@ int main()
             boxShader.setUniform("model", model);
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
-    
+        
         lightVao.bind();
         lightShader.use();
         lightShader.setUniform("view", view);
