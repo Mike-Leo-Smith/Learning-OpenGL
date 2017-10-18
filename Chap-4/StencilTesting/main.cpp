@@ -127,11 +127,8 @@ int main()
         frameShader.setUniform("view", view);
         frameShader.setUniform("model", glm::scale(glm::mat4(), glm::vec3(1.1f, 1.1f, 1.1f)));
         glDrawArrays(GL_TRIANGLES, 0, 36);
-        boxShader.setUniform("model", glm::translate(glm::mat4(), glm::vec3(1.0f, 0.0f, 1.0f)) * glm::scale(glm::mat4(),
-                                                                                                            glm::vec3(
-                                                                                                                1.1f,
-                                                                                                                1.1f,
-                                                                                                                1.1f)));
+        boxShader.setUniform("model", glm::translate(glm::mat4(), glm::vec3(1.0f, 0.0f, 1.0f))
+            * glm::scale(glm::mat4(), glm::vec3(1.1f, 1.1f, 1.1f)));
         glDrawArrays(GL_TRIANGLES, 0, 36);
         
         window.swapBuffers();
