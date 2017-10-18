@@ -92,11 +92,11 @@ int main()
     
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     
-    auto aspect = static_cast<float>(window.width()) / window.height();
-    auto projection = glm::perspective(glm::radians(45.0f), aspect, 0.1f, 100.0f);
-    
     while (!window.shouldClose()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+        auto aspect = static_cast<float>(window.width()) / window.height();
+        auto projection = glm::perspective(glm::radians(45.0f), aspect, 0.1f, 100.0f);
         
         glm::vec3 cameraPos, lookAt;
         updateCamera(window, cameraPos, lookAt);
