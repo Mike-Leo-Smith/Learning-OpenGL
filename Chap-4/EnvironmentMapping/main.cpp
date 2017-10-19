@@ -4,9 +4,9 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <Framework/Model/Model.h>
 #include "ThirdParty/GLAD/glad.h"
 #include "Framework/Graphics/Graphics.h"
+#include "Framework/Model/Model.h"
 #include "Framework/Window/Window.h"
 #include "vertices.h"
 
