@@ -28,11 +28,11 @@ Model::Model(std::string path, std::string name)
         aiString textureName;
         for (auto j = 0u; j < material->GetTextureCount(aiTextureType_DIFFUSE); j++) {
             scene->mMaterials[i]->GetTexture(aiTextureType_DIFFUSE, j, &textureName);
-            _diffuseMaps.emplace(textureName.C_Str(), std::make_shared<Texture>(path + textureName.C_Str()));
+            _diffuseMaps.emplace(textureName.C_Str(), std::make_shared<Texture2D>(path + textureName.C_Str()));
         }
         for (auto j = 0u; j < material->GetTextureCount(aiTextureType_SPECULAR); j++) {
             scene->mMaterials[i]->GetTexture(aiTextureType_SPECULAR, j, &textureName);
-            _specularMaps.emplace(textureName.C_Str(), std::make_shared<Texture>(path + textureName.C_Str()));
+            _specularMaps.emplace(textureName.C_Str(), std::make_shared<Texture2D>(path + textureName.C_Str()));
         }
     }
     _processNode(scene->mRootNode, scene);
@@ -52,8 +52,8 @@ void Model::_processMesh(aiMesh *mesh, const aiScene *scene)
 {
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
-    std::vector<std::shared_ptr<Texture>> diffuseMaps;
-    std::vector<std::shared_ptr<Texture>> specularMaps;
+    std::vector<std::shared_ptr<Texture2D>> diffuseMaps;
+    std::vector<std::shared_ptr<Texture2D>> specularMaps;
     
     for (int i = 0; i < mesh->mNumVertices; i++) {
         auto &p = mesh->mVertices[i];

@@ -15,8 +15,8 @@ class Model final
 {
 private:
     std::vector<std::shared_ptr<Mesh>> _meshes;
-    std::unordered_map<std::string, std::shared_ptr<Texture>> _diffuseMaps;
-    std::unordered_map<std::string, std::shared_ptr<Texture>> _specularMaps;
+    std::unordered_map<std::string, std::shared_ptr<Texture2D>> _diffuseMaps;
+    std::unordered_map<std::string, std::shared_ptr<Texture2D>> _specularMaps;
     void _processNode(struct aiNode *node, const struct aiScene *scene);
     void _processMesh(struct aiMesh *mesh, const struct aiScene *scene);
     

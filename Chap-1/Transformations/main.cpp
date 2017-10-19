@@ -11,8 +11,8 @@ int main()
 {
     Window window("Transformations", 800, 600);
     Shader shader("shader.vert", "shader.frag");
-    Texture boxTexture("container.jpg");
-    Texture faceTexture("awesomeface.png");
+    Texture2D boxTexture("container.jpg");
+    Texture2D faceTexture("awesomeface.png");
     
     glClearColor(0.2, 0.2, 0.2, 1.0);
     

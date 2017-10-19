@@ -19,8 +19,8 @@ set(COMMON_FILES
     Framework/Window/Window.h
     Framework/Graphics/Shader.cpp
     Framework/Graphics/Shader.h
-    Framework/Graphics/Texture.cpp
-    Framework/Graphics/Texture.h
+    Framework/Graphics/Texture2D.cpp
+    Framework/Graphics/Texture2D.h
     Framework/Mathematics/Mathematics.h
     Framework/Mathematics/Vector.h
     Framework/Mathematics/Matrix.h
@@ -37,7 +37,11 @@ set(COMMON_FILES
     Framework/Graphics/ElementBuffer.cpp
     Framework/Graphics/ElementBuffer.h
     Framework/Model/Model.cpp
-    Framework/Model/Model.h)
+    Framework/Model/Model.h
+    Framework/Graphics/Texture.cpp
+    Framework/Graphics/Texture.h
+    Framework/Graphics/CubeMap.cpp
+    Framework/Graphics/CubeMap.h)
 
 add_executable(Triangles ${COMMON_FILES} Chap-1/Triangles/main.cpp)
 add_executable(Textures ${COMMON_FILES} Chap-1/Textures/main.cpp)
@@ -52,3 +56,4 @@ add_executable(SpotLight ${COMMON_FILES} Chap-2/SpotLight/main.cpp)
 add_executable(MultipleLights ${COMMON_FILES} Chap-2/MultipleLights/main.cpp)
 add_executable(Models ${COMMON_FILES} Chap-3/Models/main.cpp)
 add_executable(StencilTesting ${COMMON_FILES} Chap-4/StencilTesting/main.cpp)
+add_executable(CubeMaps ${COMMON_FILES} Chap-4/CubeMaps/main.cpp)

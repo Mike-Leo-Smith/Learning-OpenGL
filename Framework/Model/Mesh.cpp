@@ -6,7 +6,7 @@
 #include "Mesh.h"
 
 Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices,
-           std::vector<std::shared_ptr<Texture>> diff, std::vector<std::shared_ptr<Texture>> spec)
+           std::vector<std::shared_ptr<Texture2D>> diff, std::vector<std::shared_ptr<Texture2D>> spec)
     : _vertexCount(static_cast<unsigned int>(vertices.size())),
       _indexCount(static_cast<unsigned int>(indices.size())),
       _diffuseMaps(std::move(diff)), _specularMaps(std::move(spec))
@@ -43,12 +43,12 @@ unsigned int Mesh::indexCount() const
     return _indexCount;
 }
 
-const std::vector<std::shared_ptr<Texture>> &Mesh::diffuseMaps() const
+const std::vector<std::shared_ptr<Texture2D>> &Mesh::diffuseMaps() const
 {
     return _diffuseMaps;
 }
 
-const std::vector<std::shared_ptr<Texture>> &Mesh::specularMaps() const
+const std::vector<std::shared_ptr<Texture2D>> &Mesh::specularMaps() const
 {
     return _specularMaps;
 }

@@ -7,7 +7,8 @@
 
 #include "Vertex.h"
 #include "Shader.h"
-#include "Texture.h"
+#include "Texture2D.h"
+#include "CubeMap.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "ElementBuffer.h"

@@ -6,8 +6,8 @@ int main()
 {
     Window window("Textures", 800, 600);
     Shader shader("shader.vert", "shader.frag");
-    Texture texture1("container.jpg");
-    Texture texture2("awesomeface.png");
+    Texture2D texture1("container.jpg");
+    Texture2D texture2("awesomeface.png");
     
     float vertices[] = {
         //     位置        |       颜色      |   纹理坐标

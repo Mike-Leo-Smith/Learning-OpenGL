@@ -18,20 +18,20 @@ private:
     ElementBuffer _ebo;
     unsigned int _vertexCount = 0;
     unsigned int _indexCount = 0;
-    std::vector<std::shared_ptr<Texture>> _diffuseMaps;
-    std::vector<std::shared_ptr<Texture>> _specularMaps;
+    std::vector<std::shared_ptr<Texture2D>> _diffuseMaps;
+    std::vector<std::shared_ptr<Texture2D>> _specularMaps;
 
 public:
     Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices,
-         std::vector<std::shared_ptr<Texture>> diff, std::vector<std::shared_ptr<Texture>> spec);
+         std::vector<std::shared_ptr<Texture2D>> diff, std::vector<std::shared_ptr<Texture2D>> spec);
     ~Mesh() = default;
     const VertexArray &vao() const;
     const VertexBuffer &vbo() const;
     const ElementBuffer &ebo() const;
     unsigned int vertexCount() const;
     unsigned int indexCount() const;
-    const std::vector<std::shared_ptr<Texture>> &diffuseMaps() const;
-    const std::vector<std::shared_ptr<Texture>> &specularMaps() const;
+    const std::vector<std::shared_ptr<Texture2D>> &diffuseMaps() const;
+    const std::vector<std::shared_ptr<Texture2D>> &specularMaps() const;
 };
 
 #endif  // LEARNING_OPENGL_MESH_H

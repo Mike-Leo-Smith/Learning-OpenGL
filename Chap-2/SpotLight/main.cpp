@@ -74,8 +74,8 @@ int main()
 {
     Window window("Spot Lights", 800, 600);
     Shader boxShader("box.vert", "box.frag");
-    Texture diffuseTexture("container.png");
-    Texture specularTexture("container_specular.png");
+    Texture2D diffuseTexture("container.png");
+    Texture2D specularTexture("container_specular.png");
     
     glClearColor(0.1, 0.1, 0.1, 1.0);
     

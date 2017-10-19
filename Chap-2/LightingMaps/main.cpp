@@ -75,8 +75,8 @@ int main()
     Window window("Lighting Maps", 800, 600);
     Shader boxShader("box.vert", "box.frag");
     Shader lightShader("box.vert", "light.frag");
-    Texture diffuseTexture("container.png");
-    Texture specularTexture("container_specular_color.png");
+    Texture2D diffuseTexture("container.png");
+    Texture2D specularTexture("container_specular_color.png");
     
     glClearColor(0.1, 0.1, 0.1, 1.0);
     

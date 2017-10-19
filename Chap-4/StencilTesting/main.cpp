@@ -77,7 +77,7 @@ int main()
     Window window("Stencil Testing", 800, 600);
     Shader boxShader("shader.vert", "shader.frag");
     Shader frameShader("shader.vert", "single_color.frag");
-    Texture texture("container.jpg");
+    Texture2D texture("container.jpg");
     
     VertexBuffer boxVbo;
     boxVbo.setBufferData(vertices, sizeof(vertices), GL_STATIC_DRAW);
