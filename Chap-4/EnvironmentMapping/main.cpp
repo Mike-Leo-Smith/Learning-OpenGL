@@ -25,6 +25,8 @@ void updateCamera(Window &window, glm::vec3 &cameraPos, glm::vec3 &lookAt)
     auto deltaDistance = timeElapsed * 5.0f;
     lastTime = currTime;
     
+    std::cout << "FPS: " << 1 / timeElapsed << std::endl;
+    
     auto win = window.handler();
     
     if (glfwGetKey(win, GLFW_KEY_UP)) {

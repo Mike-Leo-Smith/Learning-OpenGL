@@ -14,6 +14,7 @@ Window::Window(const std::string &window_name, int width, int height)
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    glfwWindowHint(GLFW_SAMPLES, 4);
     
     _handler = glfwCreateWindow(width, height, window_name.c_str(), nullptr, nullptr);
     glfwMakeContextCurrent(_handler);
