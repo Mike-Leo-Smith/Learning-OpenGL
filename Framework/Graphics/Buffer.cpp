@@ -27,7 +27,7 @@ unsigned int Buffer::type() const
     return _type;
 }
 
-void Buffer::setBufferData(const void *data, unsigned int size, unsigned int usage)
+void Buffer::setData(const void *data, unsigned int size, unsigned int usage)
 {
     glBindBuffer(GL_ARRAY_BUFFER, _id);
     glBufferData(GL_ARRAY_BUFFER, size, data, usage);
@@ -47,4 +47,11 @@ unsigned int Buffer::ptrDiff() const
 void Buffer::bind() const
 {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _id);
+}
+
+void Buffer::setSubData(unsigned int offset, unsigned int size, const void *data)
+{
+    glBindBuffer(GL_ARRAY_BUFFER, _id);
+    glBufferSubData(GL_ARRAY_BUFFER, offset, size, data);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
 }

@@ -11,8 +11,8 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices,
       _indexCount(static_cast<unsigned int>(indices.size())),
       _diffuseMaps(std::move(diff)), _specularMaps(std::move(spec))
 {
-    _vbo.setBufferData(vertices.data(), _vertexCount * sizeof(Vertex), GL_STATIC_DRAW);
-    _ebo.setBufferData(indices.data(), _indexCount * sizeof(unsigned int), GL_STATIC_DRAW);
+    _vbo.setData(vertices.data(), _vertexCount * sizeof(Vertex), GL_STATIC_DRAW);
+    _ebo.setData(indices.data(), _indexCount * sizeof(unsigned int), GL_STATIC_DRAW);
     _vao.setAttribPointer(_vbo, 0, 3, 8, 0);
     _vao.setAttribPointer(_vbo, 1, 3, 8, 3);
     _vao.setAttribPointer(_vbo, 2, 2, 8, 6);

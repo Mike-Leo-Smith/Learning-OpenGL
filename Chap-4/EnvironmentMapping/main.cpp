@@ -27,7 +27,7 @@ void updateCamera(Window &window, glm::vec3 &cameraPos, glm::vec3 &lookAt)
     
     std::cout << "FPS: " << 1 / timeElapsed << std::endl;
     
-    auto win = window.handler();
+    auto win = window.handle();
     
     if (glfwGetKey(win, GLFW_KEY_UP)) {
         theta += deltaAngle;
@@ -82,7 +82,7 @@ int main()
     CubeMap skyTexture("skybox", "jpg");
     
     VertexBuffer boxVbo;
-    boxVbo.setBufferData(vertices, sizeof(vertices), GL_STATIC_DRAW);
+    boxVbo.setData(vertices, sizeof(vertices), GL_STATIC_DRAW);
     
     VertexArray skyVao;
     skyVao.setAttribPointer(boxVbo, 0, 3, 8, 0);

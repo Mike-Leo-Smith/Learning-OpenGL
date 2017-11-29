@@ -6,7 +6,7 @@
 
 class Texture2D : public Texture {
 public:
-    Texture2D(const std::string &file_name, bool flip = true);
+    explicit Texture2D(const std::string &file_name, bool flip = true);
     ~Texture2D() override = default;
 };
 

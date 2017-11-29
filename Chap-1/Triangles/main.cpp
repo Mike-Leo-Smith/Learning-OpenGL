@@ -21,7 +21,7 @@ int main()
     };
     
     VertexBuffer vbo;
-    vbo.setBufferData(vertices, sizeof(vertices), GL_STATIC_DRAW);
+    vbo.setData(vertices, sizeof(vertices), GL_STATIC_DRAW);
     
     VertexArray vao;
     vao.setAttribPointer(vbo, 0, 3, 6, 0);

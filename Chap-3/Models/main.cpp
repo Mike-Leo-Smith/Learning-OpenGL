@@ -23,7 +23,7 @@ void updateCamera(Window &window, glm::vec3 &cameraPos, glm::vec3 &lookAt)
     auto deltaDistance = timeElapsed * 10.0f;
     lastTime = currTime;
     
-    auto win = window.handler();
+    auto win = window.handle();
     
     if (glfwGetKey(win, GLFW_KEY_UP)) {
         theta += deltaAngle;
@@ -79,7 +79,7 @@ int main()
     
     Shader lampShader("shader.vert", "lamp.frag");
     VertexBuffer lampVbo;
-    lampVbo.setBufferData(vertices, sizeof(vertices), GL_STATIC_DRAW);
+    lampVbo.setData(vertices, sizeof(vertices), GL_STATIC_DRAW);
     VertexArray lampVao;
     lampVao.setAttribPointer(lampVbo, 0, 3, 8, 0);
     

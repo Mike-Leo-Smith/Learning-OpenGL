@@ -24,7 +24,7 @@ void updateCamera(Window &window, glm::vec3 &cameraPos, glm::vec3 &lookAt)
     auto deltaDistance = timeElapsed * 5.0f;
     lastTime = currTime;
     
-    auto win = window.handler();
+    auto win = window.handle();
     
     if (glfwGetKey(win, GLFW_KEY_UP)) {
         theta += deltaAngle;
@@ -79,7 +79,7 @@ int main()
     CubeMap texture("skybox", "jpg");
     
     VertexBuffer skyVbo;
-    skyVbo.setBufferData(vertices, sizeof(vertices), GL_STATIC_DRAW);
+    skyVbo.setData(vertices, sizeof(vertices), GL_STATIC_DRAW);
     
     VertexArray skyVao;
     skyVao.setAttribPointer(skyVbo, 0, 3, 5, 0);

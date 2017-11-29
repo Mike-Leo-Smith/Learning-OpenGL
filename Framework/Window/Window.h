@@ -11,12 +11,12 @@
 class Window
 {
 private:
-    GLFWwindow *_handler = nullptr;
+    GLFWwindow *_handle = nullptr;
 
 public:
     Window(const std::string &window_name, int width, int height);
     ~Window() = default;
-    GLFWwindow *handler();
+    GLFWwindow *handle();
     int width();
     int height();
     void swapBuffers();

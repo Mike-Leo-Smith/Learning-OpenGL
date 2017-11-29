@@ -22,7 +22,7 @@ void updateCamera(Window &window, glm::vec3 &cameraPos, glm::vec3 &lookAt)
     auto deltaDistance = timeElapsed * 5.0f;
     lastTime = currTime;
     
-    auto win = window.handler();
+    auto win = window.handle();
     
     if (glfwGetKey(win, GLFW_KEY_UP)) {
         theta += deltaAngle;
@@ -80,7 +80,7 @@ int main()
     glClearColor(0.1, 0.1, 0.1, 1.0);
     
     VertexBuffer boxVbo;
-    boxVbo.setBufferData(vertices, sizeof(vertices), GL_STATIC_DRAW);
+    boxVbo.setData(vertices, sizeof(vertices), GL_STATIC_DRAW);
     
     VertexArray boxVao;
     boxVao.setAttribPointer(boxVbo, 0, 3, 8, 0);

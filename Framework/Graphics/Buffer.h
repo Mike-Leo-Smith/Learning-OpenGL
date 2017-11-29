@@ -21,7 +21,8 @@ public:
     unsigned int dataType() const;
     unsigned int ptrDiff() const;
     void bind() const;
-    void setBufferData(const void *data, unsigned int size, unsigned int usage);
+    void setData(const void *data, unsigned int size, unsigned int usage);
+    void setSubData(unsigned int offset, unsigned int size, const void *data);
 };
 
 #endif  // LEARNING_OPENGL_BUFFER_H

@@ -23,10 +23,10 @@ int main()
     };
     
     VertexBuffer vbo;
-    vbo.setBufferData(vertices, sizeof(vertices), GL_STATIC_DRAW);
+    vbo.setData(vertices, sizeof(vertices), GL_STATIC_DRAW);
     
     ElementBuffer ebo;
-    ebo.setBufferData(indices, sizeof(indices), GL_STATIC_DRAW);
+    ebo.setData(indices, sizeof(indices), GL_STATIC_DRAW);
     
     VertexArray vao;
     vao.setAttribPointer(vbo, 0, 3, 8, 0);

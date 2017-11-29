@@ -16,16 +16,16 @@ Window::Window(const std::string &window_name, int width, int height)
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_SAMPLES, 4);
     
-    _handler = glfwCreateWindow(width, height, window_name.c_str(), nullptr, nullptr);
-    glfwMakeContextCurrent(_handler);
+    _handle = glfwCreateWindow(width, height, window_name.c_str(), nullptr, nullptr);
+    glfwMakeContextCurrent(_handle);
     
     auto resize_callback = [](GLFWwindow *win, int w, int h) -> void {
         glfwGetFramebufferSize(win, &w, &h);
         glViewport(0, 0, w, h);
     };
     
-    glfwGetFramebufferSize(_handler, &width, &height);
-    glfwSetWindowSizeCallback(_handler, resize_callback);
+    glfwGetFramebufferSize(_handle, &width, &height);
+    glfwSetWindowSizeCallback(_handle, resize_callback);
 
     gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 
@@ -38,29 +38,29 @@ Window::Window(const std::string &window_name, int width, int height)
 
 bool Window::shouldClose() const
 {
-    return static_cast<bool>(glfwWindowShouldClose(_handler));
+    return static_cast<bool>(glfwWindowShouldClose(_handle));
 }
 
 void Window::swapBuffers()
 {
-    glfwSwapBuffers(_handler);
+    glfwSwapBuffers(_handle);
 }
 
 int Window::width()
 {
     int width, height;
-    glfwGetFramebufferSize(_handler, &width, &height);
+    glfwGetFramebufferSize(_handle, &width, &height);
     return width;
 }
 
 int Window::height()
 {
     int width, height;
-    glfwGetFramebufferSize(_handler, &width, &height);
+    glfwGetFramebufferSize(_handle, &width, &height);
     return height;
 }
 
-GLFWwindow *Window::handler()
+GLFWwindow *Window::handle()
 {
-    return _handler;
+    return _handle;
 }
