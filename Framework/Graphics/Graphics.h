@@ -10,6 +10,7 @@
 #include "Texture2D.h"
 #include "CubeMap.h"
 #include "VertexArray.h"
-#include "Buffer.h"
+#include "VertexBuffer.h"
+#include "ElementBuffer.h"
 
 #endif  // LEARNING_OPENGL_GRAPHICS_H

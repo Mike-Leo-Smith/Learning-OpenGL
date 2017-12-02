@@ -5,7 +5,7 @@
 #ifndef LEARNING_OPENGL_VERTEX_ARRAY_H
 #define LEARNING_OPENGL_VERTEX_ARRAY_H
 
-#include "Buffer.h"
+#include "ThirdParty/GLAD/glad.h"
 
 class VertexArray final
 {

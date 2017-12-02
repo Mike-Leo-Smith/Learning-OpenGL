@@ -31,22 +31,19 @@ public:
         glBindBuffer(bufferTypeId, _id);
     }
     
-    void setData(const void *data, unsigned int size, unsigned int usage)
+    void setData(const Data *data, unsigned int size, unsigned int usage)
     {
         glBindBuffer(bufferTypeId, _id);
         glBufferData(bufferTypeId, size, data, usage);
         glBindBuffer(bufferTypeId, 0);
     }
     
-    void setSubData(unsigned int offset, unsigned int size, const void *data)
+    void setSubData(unsigned int offset, unsigned int size, const Data *data)
     {
         glBindBuffer(bufferTypeId, _id);
         glBufferSubData(bufferTypeId, offset, size, data);
         glBindBuffer(bufferTypeId, 0);
     }
 };
-
-using VertexBuffer = Buffer<GL_ARRAY_BUFFER, float>;
-using ElementBuffer = Buffer<GL_ELEMENT_ARRAY_BUFFER, unsigned int>;
 
 #endif  // LEARNING_OPENGL_BUFFER_H

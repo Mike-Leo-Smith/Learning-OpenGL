@@ -43,7 +43,9 @@ set(COMMON_FILES
     Framework/Graphics/Buffer.h
     Framework/Text/Text.cpp
     Framework/Text/Text.h
-    Framework/Graphics/GLDataType.h)
+    Framework/Graphics/GLDataType.h
+    Framework/Graphics/VertexBuffer.h
+    Framework/Graphics/ElementBuffer.h)
 
 add_executable(Triangles ${COMMON_FILES} Chap-1/Triangles/main.cpp)
 add_executable(Textures ${COMMON_FILES} Chap-1/Textures/main.cpp)
