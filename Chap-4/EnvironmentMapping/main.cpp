@@ -2,6 +2,7 @@
 // Created by Mike Smith on 18/10/2017.
 //
 
+#include <iostream>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "ThirdParty/GLAD/glad.h"

@@ -22,6 +22,7 @@ int main()
     
     Font font1("AppleMyungjo.ttf");
     Font font2("Arial Unicode.ttf");
+    Font font3("Songti.ttc");
     
     glClearColor(0.2, 0.3, 0.4, 1.0);
     
@@ -45,8 +46,8 @@ int main()
         auto y = 300.0f;
         
         for (auto &&c : str) {
-            auto &&font = font2;
-            auto &&glyph = font.getGlyph(c);
+            auto &&font = font3;
+            auto &&glyph = font.getGlyph(static_cast<char32_t>(c));
             
             GLfloat xPos = x + glyph->bearingX() * scale;
             GLfloat yPos = y - (glyph->height() - glyph->bearingY()) * scale;

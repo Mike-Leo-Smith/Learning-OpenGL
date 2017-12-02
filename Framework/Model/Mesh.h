@@ -7,7 +7,6 @@
 
 #include <vector>
 #include <memory>
-#include <Framework/Graphics/ElementBuffer.h>
 #include "Framework/Graphics/Graphics.h"
 
 class Mesh

@@ -26,16 +26,10 @@ set(COMMON_FILES
     Framework/Mathematics/Matrix.h
     Framework/Graphics/VertexArray.cpp
     Framework/Graphics/VertexArray.h
-    Framework/Graphics/VertexBuffer.cpp
-    Framework/Graphics/VertexBuffer.h
     Framework/Graphics/Graphics.h
-    Framework/Graphics/Buffer.h
-    Framework/Graphics/Buffer.cpp
     Framework/Model/Mesh.cpp
     Framework/Model/Mesh.h
     Framework/Graphics/Vertex.h
-    Framework/Graphics/ElementBuffer.cpp
-    Framework/Graphics/ElementBuffer.h
     Framework/Model/Model.cpp
     Framework/Model/Model.h
     Framework/Graphics/Texture.cpp
@@ -43,12 +37,18 @@ set(COMMON_FILES
     Framework/Graphics/CubeMap.cpp
     Framework/Graphics/CubeMap.h
     Framework/Text/Font.cpp
-    Framework/Text/Font.h Framework/Text/Glyph.cpp Framework/Text/Glyph.h)
+    Framework/Text/Font.h
+    Framework/Text/Glyph.cpp
+    Framework/Text/Glyph.h
+    Framework/Graphics/Buffer.h
+    Framework/Text/Text.cpp
+    Framework/Text/Text.h
+    Framework/Graphics/GLDataType.h)
 
 add_executable(Triangles ${COMMON_FILES} Chap-1/Triangles/main.cpp)
 add_executable(Textures ${COMMON_FILES} Chap-1/Textures/main.cpp)
 add_executable(Transformations ${COMMON_FILES} Chap-1/Transformations/main.cpp)
-add_executable(Camera ${COMMON_FILES} Chap-1/Camera/main.cpp Framework/Text/Text.cpp Framework/Text/Text.h)
+add_executable(Camera ${COMMON_FILES} Chap-1/Camera/main.cpp)
 add_executable(Phong ${COMMON_FILES} Chap-2/Phong/main.cpp)
 add_executable(Materials ${COMMON_FILES} Chap-2/Materials/main.cpp)
 add_executable(LightingMaps ${COMMON_FILES} Chap-2/LightingMaps/main.cpp)
