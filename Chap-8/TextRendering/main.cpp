@@ -72,7 +72,7 @@ int main()
             
             x += (glyph->advance() >> 6) * scale; // 位偏移6个单位来获取单位为像素的值 (2^6 = 64)
         }
-    
+
         window.swapBuffers();
         glfwPollEvents();
     }

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 project(Learning_OpenGL)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_BUILD_TYPE Release)
+#set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -march=native -Wall")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -Wall")
 
@@ -47,6 +47,8 @@ set(COMMON_FILES
     Framework/Graphics/VertexBuffer.h
     Framework/Graphics/ElementBuffer.h)
 
+add_executable(StarsAroundTheSky ${COMMON_FILES} Playground/StarsAroundTheSky/main.cpp)
+add_executable(Temporary ${COMMON_FILES} Playground/Temporary/main.cpp)
 add_executable(Triangles ${COMMON_FILES} Chap-1/Triangles/main.cpp)
 add_executable(Textures ${COMMON_FILES} Chap-1/Textures/main.cpp)
 add_executable(Transformations ${COMMON_FILES} Chap-1/Transformations/main.cpp)
