@@ -78,3 +78,8 @@ unsigned int Texture::format() const
 {
     return _format;
 }
+
+void Texture::unbind() const
+{
+    glBindTexture(GL_TEXTURE_2D, 0);
+}

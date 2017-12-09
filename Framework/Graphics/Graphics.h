@@ -12,5 +12,6 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "ElementBuffer.h"
+#include "RenderTarget.h"
 
 #endif  // LEARNING_OPENGL_GRAPHICS_H

@@ -10,7 +10,7 @@
 
 class Texture
 {
-private:
+protected:
     unsigned int _id;
     unsigned int _type;
     unsigned int _format = 0;
@@ -32,6 +32,7 @@ public:
     int width() const;
     int height() const;
     void bind(int unit = -1) const;
+    void unbind() const;
 };
 
 #endif  // LEARNING_OPENGL_TEXTURE_H

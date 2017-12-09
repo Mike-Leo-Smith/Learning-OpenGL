@@ -45,7 +45,15 @@ set(COMMON_FILES
     Framework/Text/Text.h
     Framework/Graphics/GLDataType.h
     Framework/Graphics/VertexBuffer.h
-    Framework/Graphics/ElementBuffer.h)
+    Framework/Graphics/ElementBuffer.h
+    Framework/Graphics/RenderTarget.cpp
+    Framework/Graphics/RenderTarget.h
+    Framework/Graphics/FrameBuffer.cpp
+    Framework/Graphics/FrameBuffer.h
+    Framework/Graphics/ColorBuffer.cpp
+    Framework/Graphics/ColorBuffer.h
+    Framework/Graphics/RenderBuffer.cpp
+    Framework/Graphics/RenderBuffer.h)
 
 add_executable(StarsAroundTheSky ${COMMON_FILES} Playground/StarsAroundTheSky/main.cpp)
 add_executable(Temporary ${COMMON_FILES} Playground/Temporary/main.cpp)
@@ -63,5 +71,6 @@ add_executable(MultipleLights ${COMMON_FILES} Chap-2/MultipleLights/main.cpp)
 add_executable(Models ${COMMON_FILES} Chap-3/Models/main.cpp)
 add_executable(StencilTesting ${COMMON_FILES} Chap-4/StencilTesting/main.cpp)
 add_executable(CubeMaps ${COMMON_FILES} Chap-4/CubeMaps/main.cpp)
+add_executable(FrameBuffers ${COMMON_FILES} Chap-4/FrameBuffers/main.cpp)
 add_executable(EnvironmentMapping ${COMMON_FILES} Chap-4/EnvironmentMapping/main.cpp)
 add_executable(TextRendering ${COMMON_FILES} Chap-8/TextRendering/main.cpp)

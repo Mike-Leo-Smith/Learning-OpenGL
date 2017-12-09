@@ -21,14 +21,18 @@ private:
 
 public:
     Buffer() : _id(0) { glGenBuffers(1, &_id); }
-    virtual ~Buffer() { glDeleteBuffers(1, &_id); }
+    ~Buffer() { glDeleteBuffers(1, &_id); }
     unsigned int id() const { return _id; }
-    
     static constexpr unsigned int type() { return bufferTypeId; }
     
     void bind() const
     {
         glBindBuffer(bufferTypeId, _id);
+    }
+    
+    void unbind() const
+    {
+        glBindBuffer(bufferTypeId, 0);
     }
     
     void setData(const Data *data, unsigned int size, unsigned int usage)

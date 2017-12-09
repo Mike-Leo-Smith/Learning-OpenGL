@@ -50,16 +50,18 @@ int main()
     shader.use();
     
     glClearColor(0.1, 0.1, 0.1, 1.0);
-    glPointSize(8);
+    glPointSize(12);
     
     while (!window.shouldClose()) {
-        auto time = glfwGetTime();
+    
         auto aspect = static_cast<float>(window.width()) / window.height();
         auto projection = glm::perspective(static_cast<float>(M_PI_4), aspect, 0.1f, 100.0f);
-        auto view = glm::rotate(glm::mat4(), static_cast<float>(M_PI / 8), glm::vec3(0.0f, 0.0f, -1.0f));
         auto translate = glm::translate(glm::mat4(), glm::vec3(0.0f, 0.0f, -3.0f));
-        auto rotation = glm::rotate(glm::mat4(), static_cast<float>(cos(time) * M_PI), glm::vec3(0.0f, 1.0f, 0.0f));
-        auto model = translate * rotation;
+        auto rotation = glm::rotate(glm::mat4(), static_cast<float>(M_PI / 8), glm::vec3(0.0f, 0.0f, -1.0f));
+        auto view = rotation * translate;
+        auto time = glfwGetTime();
+        auto model = glm::rotate(glm::mat4(), static_cast<float>(cos(time) * M_PI), glm::vec3(0.0f, 1.0f, 0.0f));
+        
         vao.bind();
         shader.setUniform("mvp", projection * view * model);
         

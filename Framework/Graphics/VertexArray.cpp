@@ -19,3 +19,8 @@ VertexArray::~VertexArray()
 {
     glDeleteVertexArrays(1, &_id);
 }
+
+void VertexArray::unbind() const
+{
+    glBindVertexArray(0);
+}
