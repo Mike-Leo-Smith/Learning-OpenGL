@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.8)
 project(Learning_OpenGL)
 
 set(CMAKE_CXX_STANDARD 17)
-#set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -march=native -Wall")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -Wall")
 
@@ -73,4 +72,5 @@ add_executable(StencilTesting ${COMMON_FILES} Chap-4/StencilTesting/main.cpp)
 add_executable(CubeMaps ${COMMON_FILES} Chap-4/CubeMaps/main.cpp)
 add_executable(FrameBuffers ${COMMON_FILES} Chap-4/FrameBuffers/main.cpp)
 add_executable(EnvironmentMapping ${COMMON_FILES} Chap-4/EnvironmentMapping/main.cpp)
+add_executable(ShadowMapping ${COMMON_FILES} Chap-5/ShadowMapping/main.cpp Chap-5/ShadowMapping/shadow_map.cpp Chap-5/ShadowMapping/shadow_map.h Chap-5/ShadowMapping/vertices.h)
 add_executable(TextRendering ${COMMON_FILES} Chap-8/TextRendering/main.cpp)

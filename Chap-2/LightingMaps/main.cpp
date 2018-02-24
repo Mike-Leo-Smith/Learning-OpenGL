@@ -92,7 +92,7 @@ int main()
     lightVao.setAttribPointer(boxVbo, 0, 3, 8, 0);
     
     auto boxModel = glm::mat4();
-    auto lightPos = glm::vec3(1.5f, 1.0f, 2.0f);
+    auto lightPos = glm::vec3(1.2f, 0.8f, 1.5f);
     auto lightModel = glm::scale(glm::translate(glm::mat4(), lightPos), glm::vec3(0.2f));
     auto projection = glm::perspective(glm::radians(45.0f),
                                        static_cast<float>(window.width()) / window.height(), 0.1f, 100.0f);

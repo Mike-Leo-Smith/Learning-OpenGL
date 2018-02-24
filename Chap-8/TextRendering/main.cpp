@@ -66,7 +66,7 @@ int main()
             };
             
             glyph->bind();
-            vbo.setSubData(0, sizeof(vertices), reinterpret_cast<float *>(vertices));
+            vbo.subData(0, sizeof(vertices), reinterpret_cast<float *>(vertices));
             vao.bind();
             glDrawArrays(GL_TRIANGLES, 0, 6);
             

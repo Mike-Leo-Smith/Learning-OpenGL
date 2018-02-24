@@ -1,0 +1,50 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/mike/Desktop/Learning OpenGL/ThirdParty/GLAD/glad.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+glad.h
+/Users/mike/Desktop/Learning OpenGL/ThirdParty/GLAD/glad.h
+windows.h
+-
+dlfcn.h
+-
+
+/Users/mike/Desktop/Learning OpenGL/ThirdParty/GLAD/glad.h
+windows.h
+-
+stddef.h
+-
+khrplatform.h
+/Users/mike/Desktop/Learning OpenGL/ThirdParty/GLAD/khrplatform.h
+inttypes.h
+-
+inttypes.h
+-
+inttypes.h
+-
+stdint.h
+-
+stdint.h
+-
+inttypes.h
+-
+
+/Users/mike/Desktop/Learning OpenGL/ThirdParty/GLAD/khrplatform.h
+stdint.h
+-
+inttypes.h
+-
+stdint.h
+-
+

@@ -1,0 +1,416 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+..//Framework/Graphics/Graphics.h
+Vertex.h
+../Framework/Graphics/Vertex.h
+Shader.h
+../Framework/Graphics/Shader.h
+Texture2D.h
+../Framework/Graphics/Texture2D.h
+CubeMap.h
+../Framework/Graphics/CubeMap.h
+VertexArray.h
+../Framework/Graphics/VertexArray.h
+VertexBuffer.h
+../Framework/Graphics/VertexBuffer.h
+ElementBuffer.h
+../Framework/Graphics/ElementBuffer.h
+RenderTarget.h
+../Framework/Graphics/RenderTarget.h
+
+..//Framework/Mathematics/Vector.h
+immintrin.h
+-
+
+..//Framework/Window/Window.h
+GLFW/glfw3.h
+-
+string
+-
+
+..//ThirdParty/GLAD/glad.h
+windows.h
+-
+stddef.h
+-
+khrplatform.h
+../ThirdParty/GLAD/khrplatform.h
+inttypes.h
+-
+inttypes.h
+-
+inttypes.h
+-
+stdint.h
+-
+stdint.h
+-
+inttypes.h
+-
+
+..//ThirdParty/STB/stb_image.h
+stb_image.h
+../ThirdParty/STB/stb_image.h
+stdio.h
+-
+
+../Framework/Graphics/Buffer.h
+GLDataType.h
+../Framework/Graphics/GLDataType.h
+
+../Framework/Graphics/ColorBuffer.h
+Texture.h
+../Framework/Graphics/Texture.h
+
+../Framework/Graphics/CubeMap.h
+Texture.h
+../Framework/Graphics/Texture.h
+
+../Framework/Graphics/ElementBuffer.h
+Buffer.h
+../Framework/Graphics/Buffer.h
+
+../Framework/Graphics/FrameBuffer.h
+ColorBuffer.h
+../Framework/Graphics/ColorBuffer.h
+RenderBuffer.h
+../Framework/Graphics/RenderBuffer.h
+
+../Framework/Graphics/GLDataType.h
+ThirdParty/GLAD/glad.h
+../Framework/Graphics/ThirdParty/GLAD/glad.h
+
+../Framework/Graphics/RenderBuffer.h
+
+../Framework/Graphics/RenderTarget.h
+FrameBuffer.h
+../Framework/Graphics/FrameBuffer.h
+
+../Framework/Graphics/Shader.h
+string
+-
+glm/glm.hpp
+-
+Framework/Mathematics/Vector.h
+../Framework/Graphics/Framework/Mathematics/Vector.h
+
+../Framework/Graphics/Texture.h
+string
+-
+vector
+-
+
+../Framework/Graphics/Texture2D.h
+string
+-
+Texture.h
+../Framework/Graphics/Texture.h
+
+../Framework/Graphics/Vertex.h
+glm/glm.hpp
+-
+
+../Framework/Graphics/VertexArray.h
+ThirdParty/GLAD/glad.h
+../Framework/Graphics/ThirdParty/GLAD/glad.h
+
+../Framework/Graphics/VertexBuffer.h
+Buffer.h
+../Framework/Graphics/Buffer.h
+
+../ThirdParty/GLAD/khrplatform.h
+stdint.h
+-
+inttypes.h
+-
+stdint.h
+-
+
+../ThirdParty/STB/stb_image.h
+stb_image.h
+../ThirdParty/STB/stb_image.h
+stdio.h
+-
+
+/Users/mike/Desktop/Learning OpenGL/Chap-2/LightingMaps/main.cpp
+iostream
+-
+ThirdParty/GLAD/glad.h
+-
+glm/glm.hpp
+-
+glm/gtc/matrix_transform.hpp
+-
+glm/gtc/type_ptr.hpp
+-
+Framework/Window/Window.h
+/Users/mike/Desktop/Learning OpenGL/Chap-2/LightingMaps/Framework/Window/Window.h
+Framework/Graphics/Graphics.h
+/Users/mike/Desktop/Learning OpenGL/Chap-2/LightingMaps/Framework/Graphics/Graphics.h
+vertices.h
+/Users/mike/Desktop/Learning OpenGL/Chap-2/LightingMaps/vertices.h
+
+/Users/mike/Desktop/Learning OpenGL/Chap-2/LightingMaps/vertices.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/ColorBuffer.cpp
+ThirdParty/GLAD/glad.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/ThirdParty/GLAD/glad.h
+ColorBuffer.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/ColorBuffer.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/ColorBuffer.h
+Texture.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/Texture.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/CubeMap.cpp
+ThirdParty/STB/stb_image.h
+-
+ThirdParty/GLAD/glad.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/ThirdParty/GLAD/glad.h
+CubeMap.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/CubeMap.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/CubeMap.h
+Texture.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/Texture.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/FrameBuffer.cpp
+ThirdParty/GLAD/glad.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/ThirdParty/GLAD/glad.h
+FrameBuffer.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/FrameBuffer.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/FrameBuffer.h
+ColorBuffer.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/ColorBuffer.h
+RenderBuffer.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/RenderBuffer.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/RenderBuffer.cpp
+ThirdParty/GLAD/glad.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/ThirdParty/GLAD/glad.h
+RenderBuffer.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/RenderBuffer.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/RenderBuffer.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/RenderTarget.cpp
+RenderTarget.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/RenderTarget.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/RenderTarget.h
+FrameBuffer.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/FrameBuffer.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/Shader.cpp
+fstream
+-
+iostream
+-
+sstream
+-
+glm/gtc/type_ptr.hpp
+-
+ThirdParty/GLAD/glad.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/ThirdParty/GLAD/glad.h
+Shader.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/Shader.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/Shader.h
+string
+-
+glm/glm.hpp
+-
+Framework/Mathematics/Vector.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/Framework/Mathematics/Vector.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/Texture.cpp
+iostream
+-
+fstream
+-
+ThirdParty/GLAD/glad.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/ThirdParty/GLAD/glad.h
+ThirdParty/STB/stb_image.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/ThirdParty/STB/stb_image.h
+Texture.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/Texture.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/Texture.h
+string
+-
+vector
+-
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/Texture2D.cpp
+iostream
+-
+ThirdParty/STB/stb_image.h
+-
+ThirdParty/GLAD/glad.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/ThirdParty/GLAD/glad.h
+Texture2D.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/Texture2D.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/Texture2D.h
+string
+-
+Texture.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/Texture.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/VertexArray.cpp
+ThirdParty/GLAD/glad.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/ThirdParty/GLAD/glad.h
+VertexArray.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/VertexArray.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/VertexArray.h
+ThirdParty/GLAD/glad.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Graphics/ThirdParty/GLAD/glad.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Model/Mesh.cpp
+ThirdParty/GLAD/glad.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Model/ThirdParty/GLAD/glad.h
+Mesh.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Model/Mesh.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Model/Mesh.h
+vector
+-
+memory
+-
+Framework/Graphics/Graphics.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Model/Framework/Graphics/Graphics.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Model/Model.cpp
+string
+-
+iostream
+-
+unordered_map
+-
+assimp/Importer.hpp
+-
+assimp/scene.h
+-
+assimp/postprocess.h
+-
+Model.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Model/Model.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Model/Model.h
+vector
+-
+string
+-
+unordered_map
+-
+memory
+-
+Mesh.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Model/Mesh.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Text/Font.cpp
+iostream
+-
+Font.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Text/Font.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Text/Font.h
+string
+-
+unordered_map
+-
+memory
+-
+Glyph.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Text/Glyph.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Text/Glyph.cpp
+iostream
+-
+ThirdParty/GLAD/glad.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Text/ThirdParty/GLAD/glad.h
+Glyph.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Text/Glyph.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Text/Glyph.h
+freetype2/ft2build.h
+-
+freetype/freetype.h
+-
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Text/Text.cpp
+Text.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Text/Text.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Text/Text.h
+glm/glm.hpp
+-
+Framework/Graphics/Graphics.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Text/Framework/Graphics/Graphics.h
+Font.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Text/Font.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Window/Window.cpp
+ThirdParty/GLAD/glad.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Window/ThirdParty/GLAD/glad.h
+Window.h
+/Users/mike/Desktop/Learning OpenGL/Framework/Window/Window.h
+
+/Users/mike/Desktop/Learning OpenGL/Framework/Window/Window.h
+GLFW/glfw3.h
+-
+string
+-
+
+/Users/mike/Desktop/Learning OpenGL/ThirdParty/STB/stb_image.cpp
+stb_image.h
+/Users/mike/Desktop/Learning OpenGL/ThirdParty/STB/stb_image.h
+stdarg.h
+-
+stddef.h
+-
+stdlib.h
+-
+string.h
+-
+limits.h
+-
+math.h
+-
+stdio.h
+-
+assert.h
+-
+stdint.h
+-
+emmintrin.h
+-
+intrin.h
+-
+arm_neon.h
+-
+
+/Users/mike/Desktop/Learning OpenGL/ThirdParty/STB/stb_image.h
+stb_image.h
+/Users/mike/Desktop/Learning OpenGL/ThirdParty/STB/stb_image.h
+stdio.h
+-
+
+/usr/local/include/freetype2/freetype/config/ftheader.h
+
+/usr/local/include/freetype2/freetype/freetype.h
+ft2build.h
+-
+
+/usr/local/include/freetype2/ft2build.h
+freetype/config/ftheader.h
+-
+

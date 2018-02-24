@@ -42,7 +42,7 @@ public:
         glBindBuffer(bufferTypeId, 0);
     }
     
-    void setSubData(unsigned int offset, unsigned int size, const Data *data)
+    void subData(unsigned int offset, unsigned int size, const Data *data)
     {
         glBindBuffer(bufferTypeId, _id);
         glBufferSubData(bufferTypeId, offset, size, data);

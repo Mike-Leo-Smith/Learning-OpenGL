@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include <ThirdParty/GLAD/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -75,7 +76,7 @@ int main()
 {
     Window window("Models", 800, 600);
     Shader shader("shader.vert", "shader.frag");
-    Model model("nanosuit", "nanosuit.obj");
+    Model model("Volkswagen Touareg 2/model", "Touareg.3ds");
     
     Shader lampShader("shader.vert", "lamp.frag");
     VertexBuffer lampVbo;
@@ -90,7 +91,7 @@ int main()
         glm::vec3(5.0f, 13.0f, -3.0f)
     };
     
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+    glClearColor(0.5f, 0.6f, 0.7f, 1.0f);
     
     while (!window.shouldClose()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -103,7 +104,7 @@ int main()
         auto view = glm::lookAt(cameraPos, lookAt, glm::vec3(0.0, 1.0, 0.0));
     
         shader.use();
-        shader.setUniform("model", glm::mat4(1.0f));
+        shader.setUniform("model", glm::scale(glm::mat4(1.0f), glm::vec3(0.01f)));
         shader.setUniform("projection", projection);
         
         shader.setUniform("view", view);
