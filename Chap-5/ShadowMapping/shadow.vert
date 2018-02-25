@@ -1,6 +1,6 @@
 #version 410 core
 
-in highp vec3 vertexPosistion;
+layout(location = 0) in highp vec3 vertexPosistion;
 
 uniform highp mat4 lightSpaceMatrix;
 uniform highp mat4 modelMatrix;

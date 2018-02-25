@@ -21,7 +21,7 @@ float calculateShadow(vec4 rawPosition) {
     }
 
     float shadow = 0.0f;
-    float bias = max(0.05 * (1.0 - dot(fragmentNormal, lightDirection)), 0.005);
+    float bias = max(0.005 * (1.0 - dot(fragmentNormal, lightDirection)), 0.005);
     vec2 texelSize = 1.0 / textureSize(shadowSampler, 0);
 
     for(int x = -1; x <= 1; x++) {
